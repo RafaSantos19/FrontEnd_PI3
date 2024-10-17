@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import logoLogin from '../../assets/login.svg'
 import './Login.css';
 
 function Login() {
@@ -32,32 +33,31 @@ function Login() {
   }
   
   return (
-    <main>
-      <div id="parallelogram"></div>
-      <section>
-        <form onSubmit={handleSubmit}>
-
-          <h1>Login</h1>
-
-          <fieldset>
-            <div className="container"> 
+    <main className='main-login'>
+      <div id="parallelogram-login"></div>
+      <section className='section-login'>
+        <form className='form-login' onSubmit={handleSubmit}>
+          <h1 className='h1-login'>Login</h1>
+          <fieldset className='fieldset-login'>
+            <div className="container-login"> 
               <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required></input>
               <label htmlFor="email">Email</label>    
             </div>
           </fieldset>
 
-          <fieldset>
-            <div className="container"> 
+          <fieldset className='fieldset-login'>
+            <div className="container-login"> 
               <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required></input>
-              <label htmlFor="password">Senha</label>     
+              <label htmlFor="password">Senha</label>               
             </div>     
           </fieldset>
-
-          <fieldset>
-            <button type="submit">Entrar</button>
-          </fieldset>   
-
+          <fieldset className='fieldset-login'>
+            <button className='button-login' type="submit">Entrar</button>
+          </fieldset>       
+          <a href='#'>Esqueci a senha</a>  
+          <a href='cadastro'>Não tem uma conta? Registre-se</a> 
         </form>
+        <img src={logoLogin}></img>
     </section>
   </main>
   );

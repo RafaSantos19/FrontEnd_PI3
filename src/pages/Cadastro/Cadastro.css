@@ -2,24 +2,24 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Ubuntu", sans-serif;
 }
 
-.main-div{
+.main-cadastro {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;   
+    min-height: 100vh;
 }
 
-div#parallelogram {
+div#parallelogram-cadastro {
     background-color: #d8c5b3;
     width: 1000px;
-    height: 720px;
+    height: 750px;
     border-radius: 10px;
     box-shadow: 5px 5px 15px;
     transform: skew(6deg, 3deg);
@@ -27,7 +27,7 @@ div#parallelogram {
     z-index: -1;
 }
 
-section{
+.section-cadastro {
     display: flex;
     background-color: white;
     padding: 30px 5px;
@@ -35,35 +35,50 @@ section{
     box-shadow: 5px 5px 15px;
     max-width: 70vw;
 }
-section h1{
+
+.h1-cadastro {
     padding: 40px 10px;
     text-align: center;
 }
-fieldset{
+
+.fieldset-cadastro {
     border: none;
 }
 
-fieldset:nth-child(2){
+.fieldset-cadastro:nth-child(2) {
     display: flex;
 }
 
-fieldset:nth-child(3){
+.fieldset-cadastro:nth-child(3) {
     display: flex;
     padding-top: 20px;
 }
 
-fieldset:nth-child(4){
+.fieldset-cadastro:nth-child(4) {
     display: flex;
     padding-top: 20px;
 }
-fieldset:nth-child(5){
+
+.fieldset-cadastro:nth-child(5) {
     display: flex;
     width: 100%;
     margin-top: 20px;
     padding: 0 10px;
 }
 
-.container input{
+.fieldset-cadastro:nth-child(6) {
+    text-align: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
+.container-cadastro {
+    position: relative;
+}
+
+.container-cadastro input {
     margin: 10px 10px;
     width: calc(100% - 20px);
     height: 70px;
@@ -76,11 +91,9 @@ fieldset:nth-child(5){
     padding: 14px 10px 0 10px;
 }
 
-.container{
-    position: relative;
-}
 
-.container label{
+
+.container-cadastro label {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 700;
@@ -94,38 +107,38 @@ fieldset:nth-child(5){
     transition: 0.5s;
 }
 
-.container input:focus ~ label,
-.container input:valid ~ label {
+.container-cadastro input:focus~label,
+.container-cadastro input:valid~label {
     left: 20px;
     top: -10px;
     color: #555151;
 }
 
-#check{
+#check {
     width: 50%;
     text-transform: uppercase;
     font-size: 14px;
     display: flex;
 }
 
-#check input{
+#check input {
     width: 25px;
     height: 25px;
     margin: auto 0;
 }
 
-#check label{
-    margin:auto 10px;
+#check label {
+    margin: auto 10px;
     color: #555;
     transition: 0.5s;
 }
 
-#check input:checked ~ label,
-#check input:valid ~ label{
+#check input:checked~label,
+#check input:valid~label {
     color: #00acd7;
 }
 
-button{
+.button-cadastro {
     margin: 40px 0;
     margin-left: 10px;
     width: calc(50% - 10px);
@@ -139,67 +152,73 @@ button{
     transition: 0.3s linear;
 }
 
-button:hover{
+.button-cadastro:hover {
     opacity: 0.85;
 }
 
-form a{
+.form-cadastro a {
     text-decoration: none;
     font-size: 16px;
-    color: #500;
+    color: #E3C097;
     font-weight: 500;
-    padding-top: 20px;
+    margin-top: 15px;
     text-transform: uppercase;
     text-align: center;
     display: block;
+    width: 200px;
 }
 
-form a:hover {
+.form-cadastro a:hover {
     color: #111;
 }
 
-@media only screen and (max-width: 1080px) {
-	div#parallelogram {
-		height: 690px;
-	}
+.section-cadastro img {
+    width: 250px;
+    height: 250px;
+    margin: auto 40px;
+}
 
-	section img {
-		display: none;
-	}
+@media only screen and (max-width: 1080px) {
+    div#parallelogram-cadastro {
+        height: 690px;
+    }
+
+    .section-cadastro img {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 510px) {
-	div#parallelogram {
-		display: none;
-	}
+    div#parallelogram-cadastro {
+        display: none;
+    }
 
-	section {
-		min-width: 95vw;
-	}
+    .section-cadastro {
+        min-width: 95vw;
+    }
 
-	form {
-		width: 100%;
-	}
+    .form-cadastro {
+        width: 100%;
+    }
 
-	fieldset:nth-child(2),
-    fieldset:nth-child(3),
-	fieldset:nth-child(4),
-	fieldset:nth-child(5) {
-		flex-direction: column;
-	}
+    .fieldset-cadastro:nth-child(2),
+    .fieldset-cadastro:nth-child(3),
+    .fieldset-cadastro:nth-child(4),
+    .fieldset-cadastro:nth-child(5) {
+        flex-direction: column;
+    }
 
-	fieldset:nth-child(4),
-    fieldset:nth-child(3) {
-		padding: 0px;
-	}
+    .fieldset-cadastro:nth-child(4),
+    .fieldset-cadastro:nth-child(3) {
+        padding: 0px;
+    }
 
-	div#check {
-		width: 100%;
-	}
+    div#check {
+        width: 100%;
+    }
 
-	button {
-		width: 100%;
-		margin-left: 0;
-	}
+    .button-cadastro {
+        width: 100%;
+        margin-left: 0;
+    }
 }
-

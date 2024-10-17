@@ -1,13 +1,15 @@
 import React from 'react';
-import Menu from '../../components/Menu/Menu';
+import './Home.css';  // Importa o CSS da Home
+import bgHeader from '../../assets/bg-header.png'; // Importe a imagem do banner
 
 function Home() {
   return (
-    <div>
-      <Menu/>
-      <h1>HOME</h1>
+    <div className="home">
+      <section className="banner">
+        <img src={bgHeader} alt="Banner" className="banner-image" />
+      </section>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

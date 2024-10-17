@@ -9,14 +9,16 @@ import './App.css';
 function App() {
 
   return (
-   <Router>
+    <Router>
+      {/* Menu estará presente em todas as rotas */}
+      <Menu />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cadastro' element={<Cadastro />} />
         <Route path='/login' element={<Login />} />
       </Routes>
-   </Router>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
