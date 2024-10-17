@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';  // Importa o CSS da Home
-import bgHeader from '../../assets/bg-header.png'; // Importe a imagem do banner
+import bgHeader from '../../assets/bg-header1.png'; // Importe a imagem do banner
 
 function Home() {
   return (
