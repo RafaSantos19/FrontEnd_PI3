@@ -1,0 +1,75 @@
+footer {
+    background-color: rgb(0, 2, 17);
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.container-footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.div-footer {
+    padding: 10px;
+}
+
+.ul-footer {
+    padding: 20px;
+}
+
+.li-footer {
+    margin: 10px 10px 15px -18px;
+    justify-content: left;
+    color: #c28d51;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+h1 {
+    color: white;
+}
+
+.div-footer-contato {
+    border-left: solid 3px #c28d51;
+    padding: 20px;
+}
+
+.div-direitos {
+    border-top: solid 3px #c28d51;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+.li-footer a:hover {
+    color: white;
+    transition: 0.2s;
+}
+
+.logo-instagram {
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+}
+
+.logo-instagram:hover {
+    opacity: 0.6141615;
+}
+
+.logo-twitter {
+    width: 25px;
+    margin: 10px;
+}
+
+.logo-twitter:hover {
+    opacity: 0.6141615;
+}
+
+.div-footer-redes {
+    padding: 10px;
+}
