@@ -40,8 +40,7 @@ function Menu() {
               <li><a href="#">Agendamento</a></li>
               <li><a href="#">Serviços</a></li>
               <li><a href="#">Cursos</a></li>
-              <li><a href="#">Sobre</a></li>
-              <li><a href="/Cadastro">Cadastro</a></li>
+              <li><a href="/Login">Login</a></li>
             </ul>
           </div>
           <span className={`navTrigger ${menuActive ? 'active' : ''}`} onClick={handleMenuClick}>

@@ -111,14 +111,14 @@ div#parallelogram-login {
 }
 
 .button-login:hover{
-    opacity: 0.85;
+    background-color: #c7b2a1;
 }
 
 .form-login a{
     text-decoration: none;
     padding-top: 10px;
     font-size: 16px;
-    color: #500;
+    color: #E3C097;
     font-weight: 500;
     text-transform: uppercase;
     text-align: center;
@@ -133,6 +133,58 @@ div#parallelogram-login {
     width: 250px;
     height: 250px;
     margin:auto 40px;
+}
+
+/* Estilo do modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Certifique-se de que o modal esteja acima de outros elementos */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px; /* Largura máxima do modal */
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: calc(100% - 20px);
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #d8c5b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+    background-color: #c7b2a1;
 }
 
 @media only screen and (max-width: 1080px) {

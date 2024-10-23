@@ -1,0 +1,157 @@
+.section-perfil{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    color: #c28d51;
+}
+.div-perfil{
+    background-color: #ffffff; 
+    border: solid 3px #c28d51;
+    box-shadow: 5px 5px 15px;
+    border-radius: 10px;
+}
+.historico-perfil{
+    padding: 20px;
+}
+
+.dados-editaveis-perfil{
+    display: flex;
+    border-bottom: solid 4px #c28d51;
+}
+
+.div-foto-perfil{
+    padding: 30px;
+    border-right: 3px solid #c28d51;
+}
+
+.div-foto-perfil img{
+    width: 200px;
+    margin: 15px;
+}
+
+.div-dados-perfil{
+    padding: 30px;
+}
+
+.fieldset-perfil {
+    border: none;
+}
+.fieldset-perfil:nth-child(2) {
+    display: flex;
+}
+
+.fieldset-perfil:nth-child(3) {
+    display: flex;
+    padding-top: 20px;
+}
+
+.fieldset-perfil:nth-child(4) {
+    display: flex;
+    padding-top: 20px;
+}
+.fieldset-perfil:nth-child(5) {
+    display: flex;
+    padding-top: 60px;
+    justify-content: space-between;
+}
+
+.a-perfil{
+    text-decoration: none;
+    color: #c28d51;
+    transition: 0.3s;
+}
+
+.a-perfil:hover{
+    opacity: 0.6;
+}
+
+.container-perfil button{
+    background: transparent;
+    border: solid 2px #c28d51;
+    width: 180px;
+    height: 50px;
+    border-radius: 6px;
+    color: #c28d51;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.container-perfil button:hover{
+    background-color: antiquewhite;
+}
+
+.container-perfil {
+    position: relative;
+}
+
+.container-perfil input {
+    margin: 10px 10px;
+    width: calc(100% - 20px);
+    height: 70px;
+    border-bottom: solid 2px #c28d51;
+    border-top: none;
+    border-left: none;
+    border-right:none ;
+    background: transparent;
+    color: #383838;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 16px 10px 0 10px;
+    outline: 0;
+}
+
+.container-perfil input:placeholder-shown ~ .container-perfil label {
+    font-size: 17px;
+    cursor: text;
+    top: 20px;
+}
+
+.container-perfil label {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    color: #9d9d9d;
+    position: absolute;
+    line-height: 70px;
+    top: 10px;
+    left: 20px;
+    user-select: none;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.container-perfil input:focus~label,
+.container-perfil input:valid~label {
+    left: 20px;
+    top: -10px;
+    color: #555151;
+}
+
+@media only screen and (max-width: 720px) {
+    .section-perfil {
+        min-width: 95vw;
+    }
+    .div-foto-perfil{
+        border: none;
+    }
+    
+    .dados-editaveis-perfil{
+        flex-direction: column;
+    }
+
+    .fieldset-perfil:nth-child(2),
+    .fieldset-perfil:nth-child(3),
+    .fieldset-perfil:nth-child(4),
+    .fieldset-perfil:nth-child(5) {
+        flex-direction: column;
+    }
+
+    .container-perfil button {
+        width: 100%;
+        margin: 10px;
+    }
+}

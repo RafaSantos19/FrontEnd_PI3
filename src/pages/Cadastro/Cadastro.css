@@ -153,7 +153,7 @@ div#parallelogram-cadastro {
 }
 
 .button-cadastro:hover {
-    opacity: 0.85;
+    background-color: #c7b2a1;
 }
 
 .form-cadastro a {
