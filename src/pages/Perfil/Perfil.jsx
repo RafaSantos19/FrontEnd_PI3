@@ -1,6 +1,6 @@
 import React from 'react';
 import './perfil.css';
-import logoLogin from '../../assets/login.svg'
+import logoLogin from '../../assets/login.svg';
 
 function Perfil() {
   return (

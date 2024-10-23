@@ -73,8 +73,8 @@ function Login() {
         <img src={logoLogin} alt="Login Logo"></img>
 
         {forgotPassword && (
-          <div className="modal">
-            <div className="modal-content">
+          <div className="modal_login">
+            <div className="modal-content_login">
               <h2>Recuperar Senha</h2>
               <input
                 type="email"
