@@ -22,15 +22,20 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/user/signin', formData).then((response) => {
-      if (response.status === 200) {
-        alert('Login realizado com sucesso!');
-        window.location.href = '/';
-      }
-    }).catch((err) => {
-      console.error('Erro ao fazer login: ', err);
-      alert('Erro ao fazer login. Verifique suas credenciais');
-    });
+    axios.post('http://localhost:8080/user/signin', formData)
+      .then((response) => {
+        if (response.status === 200) {
+          const token = response.data.token; // Supondo que o token esteja na resposta
+          localStorage.setItem('authToken', token); // Armazena o token no localStorage
+          console.log(token)
+          alert('Login realizado com sucesso!');
+          window.location.href = '/';
+        }
+      })
+      .catch((err) => {
+        console.error('Erro ao fazer login: ', err);
+        alert('Erro ao fazer login. Verifique suas credenciais');
+      });
   };
 
   const handleForgotPassword = () => {

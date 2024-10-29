@@ -3,12 +3,6 @@ import axios from 'axios'
 import logoLogin from '../../assets/login.svg'
 import './Cadastro.css'
 
-/*
-TODO:
-FAZER VALIDAÇÃO PARA SENHA FORTE --  Regex da senha
-https://teams.microsoft.com/l/message/48:notes/1729164230132?context=%7B%22contextType%22%3A%22chat%22%7D
-*/
-
 function Cadastro() {
 
   const [formData, setFormData] = useState({
@@ -35,7 +29,6 @@ function Cadastro() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Permitir apenas números
     if (name === 'phone') {
       const newValue = formatPhone(value.replace(/\D/g, '').slice(0, 14)); // Limitar a 14 caracteres
       setFormData({
@@ -54,7 +47,6 @@ function Cadastro() {
     e.preventDefault();
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
 
     if (formData.password !== formData.conPassword) {
       alert('As senhas não coincidem!');

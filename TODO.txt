@@ -1,0 +1,7 @@
+Coisas para melhorar:
+
+1. Arquivo de configuração padrão do axios:
+Basicamente é seguir a mesma lógica usada para organizar os métodos do firebase no back-end
+
+2. Handlers (Service):
+Criar uma camada separada para lidar com a lógica das coisas
