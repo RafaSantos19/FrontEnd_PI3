@@ -6,6 +6,7 @@ import logo_branca from '../../assets/LOGOTIPO-BRANCA.png';
 function Menu() {
   const [menuActive, setMenuActive] = useState(false);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleMenuClick = () => {
     setMenuActive(!menuActive);
@@ -21,6 +22,11 @@ function Menu() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
+    // Verifica se o token está no localStorage
+    const token = localStorage.getItem('authToken');
+    setIsLoggedIn(!!token); // Define isLoggedIn como true se o token existir
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -40,7 +46,7 @@ function Menu() {
               <li><a href="#">Agendamento</a></li>
               <li><a href="#">Serviços</a></li>
               <li><a href="#">Cursos</a></li>
-              <li><a href="/Login">Login</a></li>
+              <li><a href={isLoggedIn ? "/perfil" : "/login"}>{isLoggedIn ? "Perfil" : "Login"}</a></li>
             </ul>
           </div>
           <span className={`navTrigger ${menuActive ? 'active' : ''}`} onClick={handleMenuClick}>
