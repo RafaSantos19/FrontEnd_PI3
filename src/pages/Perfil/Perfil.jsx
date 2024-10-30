@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // Importando Axios
+import axios from 'axios';
 import './Perfil.css';
 import logoLogin from '../../assets/login.svg';
 
 function Perfil() {
-  // Estado para armazenar os dados do usuário
   const [userData, setUserData] = useState({
     name: '',
     lastName: '',
@@ -12,23 +11,43 @@ function Perfil() {
     phone: ''
   });
 
-  //TODO:Função de logout -> remover o token e fazer a requisição de singout
   const handleLogout = () => {
-    localStorage.removeItem('authToken'); // Remove o token de autenticação
+    localStorage.removeItem('authToken');
     window.location.href = '/login';
   };
 
-  // Função para buscar os dados do usuário
   const fetchUserData = async () => {
     try {
-      const response = await axios.get('URL_DA_API_USER'); // Substitua pela URL da sua API
-      setUserData(response.data); // Armazena os dados do usuário no estado
+      const token = localStorage.getItem('authToken');
+      const response = await axios.get('URL_DA_API_USER', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setUserData(response.data);
     } catch (error) {
       console.error("Erro ao buscar os dados do usuário:", error);
     }
   };
 
-  // useEffect para buscar os dados quando o componente for montado
+  const handleDeleteAccount = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      if (!token) return alert("Usuário não autenticado.");
+
+      localStorage.setItem('Teste', 'batata quente')
+      alert("TESTE: ", localStorage.getItem('Teste'))
+
+      await axios.delete('http://localhost:8080/user/delete', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      alert("Conta deletada com sucesso.");
+      handleLogout(); // Desloga o usuário após a exclusão da conta
+    } catch (error) {
+      console.error("Erro ao deletar a conta:", error);
+      alert("Erro ao deletar a conta.");
+    }
+  };
+
   useEffect(() => {
     fetchUserData();
   }, []);
@@ -49,8 +68,8 @@ function Perfil() {
                   type="text"
                   id="name"
                   name="name"
-                  value={userData.name} // Preenche o campo com o nome do usuário
-                  onChange={(e) => setUserData({ ...userData, name: e.target.value })} // Atualiza o estado ao mudar
+                  value={userData.name}
+                  onChange={(e) => setUserData({ ...userData, name: e.target.value })}
                   required
                 />
                 <label htmlFor="name">Nome</label>
@@ -60,8 +79,8 @@ function Perfil() {
                   type="text"
                   id="lastName"
                   name="lastName"
-                  value={userData.lastName} // Preenche o campo com o sobrenome do usuário
-                  onChange={(e) => setUserData({ ...userData, lastName: e.target.value })} // Atualiza o estado ao mudar
+                  value={userData.lastName}
+                  onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
                   required
                 />
                 <label htmlFor="lastName">Sobrenome</label>
@@ -73,8 +92,8 @@ function Perfil() {
                   type="text"
                   id="email"
                   name="email"
-                  value={userData.email} // Preenche o campo com o email do usuário
-                  onChange={(e) => setUserData({ ...userData, email: e.target.value })} // Atualiza o estado ao mudar
+                  value={userData.email}
+                  onChange={(e) => setUserData({ ...userData, email: e.target.value })}
                   required
                 />
                 <label htmlFor="email">Email</label>
@@ -85,8 +104,8 @@ function Perfil() {
                   maxLength="14"
                   id="phone"
                   name="phone"
-                  value={userData.phone} // Preenche o campo com o telefone do usuário
-                  onChange={(e) => setUserData({ ...userData, phone: e.target.value })} // Atualiza o estado ao mudar
+                  value={userData.phone}
+                  onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
                   required
                 />
                 <label htmlFor="phone">Telefone</label>
@@ -99,6 +118,9 @@ function Perfil() {
               </div>
               <div className="container-perfil">
                 <button>Salvar</button>
+              </div>
+              <div className="container-perfil">
+                <button onClick={handleDeleteAccount}>Deletar</button> {/* Botão Deletar */}
               </div>
             </fieldset>
           </div>

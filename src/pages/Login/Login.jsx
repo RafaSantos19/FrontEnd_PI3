@@ -27,9 +27,10 @@ function Login() {
         if (response.status === 200) {
           const token = response.data.token; // Supondo que o token esteja na resposta
           localStorage.setItem('authToken', token); // Armazena o token no localStorage
-          console.log(token)
           alert('Login realizado com sucesso!');
-          window.location.href = '/';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 1000)
         }
       })
       .catch((err) => {
