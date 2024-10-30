@@ -71,7 +71,7 @@ function Perfil() {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      await axios.put('http://localhost:8080/user/profile', userData, {
+      await axios.put('http://localhost:8080/user/update', userData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Dados atualizados com sucesso!");
