@@ -121,16 +121,17 @@ function Cadastro() {
           </fieldset>
 
           <fieldset className='fieldset-cadastro'>
-            <div id="check">
-              <input type="checkbox" id="accept_use" name="accept_use" required />
-              <label htmlFor="accept_use">Aceitar os termos de uso</label>
-            </div>
+            <div className='checks'>
+              <div id="check">
+                <input type="checkbox" id="accept_use" name="accept_use" required />
+                <label htmlFor="accept_use">Aceitar os termos de uso</label>
+              </div>
 
-            <div id='check' >
-              <input type="checkbox" id="accept_priv" name="accept_priv" required />
-              <label htmlFor="accept_priv">Aceitar políticas de privacidade</label>
+              <div id='check' >
+                <input type="checkbox" id="accept_priv" name="accept_priv" required />
+                <label htmlFor="accept_priv">Aceitar políticas de privacidade</label>
+              </div>
             </div>
-
             <button className='button-cadastro' type="submit">Cadastrar</button>
           </fieldset>
 
