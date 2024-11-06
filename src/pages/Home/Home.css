@@ -1,20 +1,38 @@
 .banner {
     width: 100%;
     height: 500px;
+    background-color: #000;
     /* Define uma altura mínima para o banner */
     position: relative;
     overflow: hidden;
-    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
     /* Um fundo temporário para testar */
 }
 
 .banner-image {
-    width: 100%;
     height: 100%;
     /* Força a imagem a ocupar a altura definida */
     object-fit: cover;
     /* Garante que a imagem cubra todo o banner */
-    display: block;
+}
+
+.div-banner{
+    top: 50%;
+    width: 80%;
+    text-align: center;
+}
+
+.h1-banner{
+    color: #fff;
+    margin: 20px;
+    font-size: 50px;
+}
+
+.h6-banner{
+    color: #fff;
+    margin: 20px;
+    font-size: 20px;
 }
 
 body {
@@ -25,7 +43,6 @@ body {
 .section {
     text-align: center;
     padding: 4rem 0;
-
 }
 
 .texto-servicos {
@@ -43,8 +60,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 12rem;
-    padding-bottom: 20rem;
-
+    padding-bottom: 10rem;
 }
 
 .card-home {
@@ -54,7 +70,7 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     background: #F3EADC;
     flex: 1 1 calc(33% - 2rem);
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .card-home h2 {
@@ -67,9 +83,8 @@ body {
     margin: 1rem 0;
 }
 
-.button {
+.card-home .button {
     display: inline-block;
-    margin-top: 1.5rem;
     padding: 0.75rem 1.5rem;
     border: 2px solid #EBDBC2;
     background: none;
@@ -79,6 +94,18 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.div-card-texto{
+    height: 80%;
+}
+
+.div-card-button{
+    height: 20%;
+    justify-content: center;
 }
 
 .button:hover {
@@ -101,7 +128,10 @@ body {
 
 .fundo-cor {
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #F3EADC;
+    width: 70%;
     /* Cor de fundo do conteúdo */
     padding: 2.5rem;
     /* Altere conforme necessário */
@@ -113,6 +143,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    width: 30%;
 }
 
 .name {
@@ -134,12 +166,9 @@ body {
 .description {
     color: #000;
     /* Cor do texto */
-    margin-left: 2rem;
-    /* Espaçamento à esquerda */
     text-align: center;
-    margin-top: 3rem;
-    /* Espaçamento superior */
     padding: 2rem;
+    width: 70%;
 }
 
 .subtitle {
@@ -155,20 +184,30 @@ body {
     /* Peso leve */
     padding: 2rem;
 }
-
-
-@media (max-width: 768px) {
-    .fundo-cor-mobile {
-        width: 75%;
-        font-size: 0.75rem;
+@media (max-width: 1064px) {
+    .fundo-cor{
+        width: 90%;
     }
-
+    .banner-image{
+        display: none;
+    }
+    .div-banner{
+        width: 100%;
+    }
+}
+@media (max-width: 904px) {
+    .container{
+        gap: 5rem;
+    }
+}
+@media (max-width: 780px) {
+    .fundo-cor{
+        font-size: 0.75rem;
+        flex-direction: column;
+    }
     h1 {
         font-size: 1rem;
     }
-}
-
-@media (max-width: 768px) {
     .card-home {
         flex: 1 1 100%;
         /* Muda para 100% em telas menores */
@@ -176,4 +215,43 @@ body {
         /* Remove a largura máxima */
         text-align: center;
     }
+    .description{
+        width: 100%;
+    }
+    .content{
+        width: 100%;
+    }
 }
+@media (max-width: 554px){
+    .fundo-cor{
+        width: 100%;
+    }
+    .description{
+        padding: 1.5rem;
+    }
+    .subtitle{
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 454px) {
+    .h1-banner{
+        color: #fff;
+        margin: 20px;
+        font-size: 40px;
+    }
+    
+    .h6-banner{
+        color: #fff;
+        margin: 20px;
+        font-size: 16px;
+    }
+
+    .card-home{
+        max-width: none;
+        width: 100%;
+    }
+
+}
+
+
+    
