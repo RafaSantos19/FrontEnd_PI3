@@ -117,6 +117,9 @@ function Perfil() {
           <div className='div-foto-perfil'>
             <h1>Foto de perfil</h1>
             <img src={logoLogin} alt="Foto de perfil" />
+            <div className="container-perfil">
+                <button onClick={handleLogout}>Sair</button>
+            </div>
           </div>
           <div className='div-dados-perfil'>
             <h1>Dados Gerais</h1>
@@ -176,10 +179,7 @@ function Perfil() {
               </div>
               <div className="container-perfil">
                 <button onClick={handleSave}>Salvar</button>
-              </div>
-              <div className="container-perfil">
-                <button onClick={handleLogout}>Sair</button>
-              </div>
+              </div>              
               <div className="container-perfil">
                 <button onClick={handleDeleteAccount}>Deletar Conta</button> {/* Botão Deletar */}
               </div>

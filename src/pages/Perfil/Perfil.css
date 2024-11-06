@@ -1,4 +1,5 @@
 .section-perfil{
+    background-color: #E7C7A1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,18 +71,23 @@ h1{
 }
 
 .container-perfil button{
-    background: transparent;
-    border: solid 2px #c28d51;
+    border: none;
     width: 180px;
     height: 50px;
     border-radius: 6px;
-    color: #c28d51;
+    background-color: #c28d51;
+    color: #fff;
     font-size: 16px;
     transition: 0.2s;
+    margin-right: 10px;
+}
+
+.div-foto-perfil .container-perfil button{
+    width: 100%;
 }
 
 .container-perfil button:hover{
-    background-color: antiquewhite;
+    background-color: #E3C097;
 }
 
 .container-perfil {
@@ -89,7 +95,7 @@ h1{
 }
 
 .container-perfil input {
-    margin: 10px 10px;
+    margin: 14px 14px;
     width: calc(100% - 20px);
     height: 70px;
     border-bottom: solid 2px #c28d51;
@@ -184,11 +190,18 @@ h1{
 }
 
 @media only screen and (max-width: 720px) {
+
     .section-perfil {
         min-width: 95vw;
     }
+
+    .div-perfil{
+        width: 100%;
+    }
+
     .div-foto-perfil{
         border: none;
+        text-align: center;
     }
     
     .dados-editaveis-perfil{
@@ -204,6 +217,6 @@ h1{
 
     .container-perfil button {
         width: 100%;
-        margin: 10px;
+        margin-top: 10px;
     }
 }

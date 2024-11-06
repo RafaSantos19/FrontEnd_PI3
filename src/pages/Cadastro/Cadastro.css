@@ -150,7 +150,7 @@ div#parallelogram-cadastro {
     margin-left: 10px;
     width: calc(50% - 10px);
     height: 70px;
-    background-color: #d8c5b3;
+    background-color: #c28d51;
     color: #fff;
     font-size: 20px;
     border: none;
@@ -160,7 +160,7 @@ div#parallelogram-cadastro {
 }
 
 .button-cadastro:hover {
-    background-color: #c7b2a1;
+    background-color: #E3C097;
 }
 
 .form-cadastro a {
@@ -234,6 +234,7 @@ div#parallelogram-cadastro {
 @media only screen and (max-width: 1080px) {
     div#parallelogram-cadastro {
         height: 690px;
+        width: 800px;
     }
 
     .section-cadastro img {
@@ -242,6 +243,19 @@ div#parallelogram-cadastro {
 }
 
 @media only screen and (max-width: 510px) {
+    .main-cadastro {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .h1-cadastro {
+        padding: 25px 5px;
+        text-align: center;
+        font-size: 25px;
+    }
+    
     div#parallelogram-cadastro {
         display: none;
     }
@@ -268,6 +282,10 @@ div#parallelogram-cadastro {
 
     div#check {
         width: 100%;
+    }
+
+    .checks{
+        margin: 0;
     }
 
     .button-cadastro {
