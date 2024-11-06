@@ -11,7 +11,7 @@
 }
 
 .header-menu.scrolled {
-    background-color: #fff;
+    background-color: #111;
     /* Cor preta para a barra quando scrolled */
 }
 
@@ -22,7 +22,7 @@
     text-align: center;
 }
 
-.nav div.logo {
+.nav div.nav-logo {
     float: left;
     padding-left: 3rem;
 }
@@ -54,7 +54,8 @@
 }
 
 .nav div.main_list ul li a:hover {
-    color: #c28d51;
+    /*color: #c28d51;*/
+    opacity: 0.7;
 }
 
 .logo-menu {
@@ -65,6 +66,20 @@
 
 .navTrigger {
     display: none;
+}
+
+.div-nav-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.nav-logo-perfil {
+    width: 28px;
+    margin-right: 4px;
+    position: relative;
+    top: 5px;
 }
 
 /* Media query for mobile */
@@ -78,16 +93,23 @@
         height: 0;
         overflow: hidden;
         transition: height 0.5s ease;
+        margin-top: 0;
+        padding-top: 0;
     }
 
     .nav div.show_list {
         height: 100vh;
+        margin-top: 0;
+        padding-top: 0;
+        top: 0;
     }
 
     .nav div.main_list ul {
         flex-direction: column;
         height: auto;
         background-color: #111;
+        padding: 0;
+        margin: 0;
     }
 
     .nav div.main_list ul li {

@@ -10,7 +10,7 @@ function Home() {
     return (
         <div className="home">
             <Menu/>
-            <section className="banner">
+            <section className="banner-home">
                 <div className='div-banner'>
                     <h1 className='h1-banner'>STUDIO TAILINE</h1>
                     <h6 className='h6-banner'>Realçando sua beleza, uma sobrancelha de cada vez, no Studio Tailine.</h6>
@@ -20,7 +20,7 @@ function Home() {
 
             <h1 class="texto-servicos">Serviços Oferecidos</h1>
 
-            <section className="container">
+            <section className="card-container">
                 <div className="card-home">
                     <div className="div-card-texto">
                         <h2>SOBRANCELHAS</h2>
@@ -91,7 +91,7 @@ function Home() {
             </section>
             <section className="tailine-fundo">
                 <div className="fundo-cor">
-                    <div className="content">
+                    <div className="content-home">
                         <p className="name">Tailine Oliveira</p>
                         <img src={tailine} alt="Tailine Oliveira" className="img-tailine" />
                     </div>
