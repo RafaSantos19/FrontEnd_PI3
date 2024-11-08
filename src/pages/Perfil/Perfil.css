@@ -177,7 +177,7 @@ h1{
 .modal-content_perfil button {
     margin: 10px;
     padding: 10px 15px;
-    background-color: #d8c5b3;
+    background-color: #c28d51;
     color: white;
     border: none;
     border-radius: 5px;
@@ -186,7 +186,7 @@ h1{
 }
 
 .modal-content_perfil button:hover {
-    background-color: #c7b2a1;
+    background-color: #E3C097;
 }
 
 @media only screen and (max-width: 720px) {

@@ -13,6 +13,7 @@ function Perfil() {
 
   const [updatePassword, setUpdatePassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const formatPhone = (value) => {
     const cleaned = value.replace(/\D/g, '');
@@ -86,9 +87,6 @@ function Perfil() {
       const token = localStorage.getItem('authToken');
       if (!token) return alert("Usuário não autenticado.");
 
-      localStorage.setItem('Teste', 'batata quente')
-      alert("TESTE: ", localStorage.getItem('Teste'))
-
       await axios.delete('http://localhost:8080/user/delete', {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -104,6 +102,10 @@ function Perfil() {
   const openPasswordModal = () => {
     setResetEmail(userData.email);
     setUpdatePassword(true);
+  };
+
+  const confirmDeleteAccount = () => {
+    setShowDeleteModal(true);
   };
 
   useEffect(() => {
@@ -175,13 +177,10 @@ function Perfil() {
             <a href='#' onClick={openPasswordModal} className='a-perfil'>Altere sua senha</a>
             <fieldset className='fieldset-perfil'>
               <div className="container-perfil">
-                <button>Editar</button>
-              </div>
-              <div className="container-perfil">
-                <button onClick={handleSave}>Salvar</button>
+                <button onClick={handleSave}>Salvar Edições</button>
               </div>              
               <div className="container-perfil">
-                <button onClick={handleDeleteAccount}>Deletar Conta</button> {/* Botão Deletar */}
+                <button onClick={confirmDeleteAccount}>Deletar Conta</button> {/* Botão para abrir o modal */}
               </div>
             </fieldset>
           </div>
@@ -203,6 +202,17 @@ function Perfil() {
             />
             <button onClick={handleUpdatePassword}>Enviar Email para Alteração</button>
             <button onClick={() => setUpdatePassword(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
+
+      {showDeleteModal && (
+        <div className="modal_perfil">
+          <div className="modal-content_perfil">
+            <h2>Confirmar Exclusão</h2>
+            <p>Tem certeza de que deseja deletar sua conta? Esta ação é irreversível.</p>
+            <button onClick={handleDeleteAccount}>Confirmar</button>
+            <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
           </div>
         </div>
       )}
