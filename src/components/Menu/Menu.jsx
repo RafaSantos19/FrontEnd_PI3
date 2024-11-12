@@ -45,7 +45,7 @@ function Menu() {
             <ul className="navlinks">
                 <li><a href="/agendamento">Agendamento</a></li>
                 <li><a href="#">Serviços</a></li>
-                <li><a href="#">Cursos</a></li>
+                <li><a href="/cursos">Cursos</a></li>
                 <div className='div-nav-perfil'>
                   <li><a href={isLoggedIn ? "/perfil" : "/login"}><img className='nav-logo-perfil' src={logo_perfil} alt='logo perfil'/>{isLoggedIn ? "Perfil" : "Login"}</a></li>
                 </div>  

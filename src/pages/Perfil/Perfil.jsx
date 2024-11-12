@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Perfil.css';
 import logoLogin from '../../assets/login.svg';
+import Menu from '../../components/Menu/Menu';
 
 function Perfil() {
   const [userData, setUserData] = useState({
@@ -114,6 +115,7 @@ function Perfil() {
 
   return (
     <section className='section-perfil'>
+      <Menu/>
       <div className='div-perfil'>
         <div className='dados-editaveis-perfil'>
           <div className='div-foto-perfil'>
@@ -157,6 +159,7 @@ function Perfil() {
                   name="email"
                   value={userData.email}
                   onChange={handleInputChange}
+                  readOnly
                   required
                 />
                 <label htmlFor="email">Email</label>
@@ -186,7 +189,13 @@ function Perfil() {
           </div>
         </div>
         <div className='historico-perfil'>
-          <h1>Histórico</h1>
+          <center><h1>Agenda</h1></center>
+          <br />
+          <iframe 
+            src="https://calendar.google.com/calendar/u/0/embed?src=426a9c66fdbae0e52a9617b61ac1eb205748e5d0c7f5af1b21fc18fca3ba02cd@group.calendar.google.com&ctz=America/Sao_Paulo"
+            style={{ border: 'none', width: '100%', height: '600px' }}
+            title="Calendário Google"
+          ></iframe>
         </div>
       </div>
 

@@ -7,11 +7,11 @@
     left: 0;
     z-index: 1000;
     transition: background-color 0.4s ease;
-    background-color: transparent;
+    background-color: #000;
 }
 
 .header-menu.scrolled {
-    background-color: #111;
+    background-color: #000;
     /* Cor preta para a barra quando scrolled */
 }
 
@@ -48,7 +48,7 @@
 
 .nav div.main_list ul li a {
     text-decoration: none;
-    color: #ecb785;
+    color: #fff;
     line-height: 65px;
     font-size: 1.9rem;
 }
