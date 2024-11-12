@@ -4,6 +4,7 @@ import Home from './pages/Home/Home.jsx';
 import Cadastro from './pages/Cadastro/Cadastro.jsx';
 import Login from './pages/Login/Login.jsx';
 import Perfil from './pages/Perfil/Perfil.jsx';
+import Agendamento from './pages/Agendamento/Agendamento.jsx';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/cadastro' element={<Cadastro />} />
         <Route path='/login' element={<Login />} />
         <Route path='/perfil' element={<Perfil />} />
+        <Route path='/agendamento' element={<Agendamento />} />
       </Routes>
     </Router>
   );

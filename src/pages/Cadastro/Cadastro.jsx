@@ -60,7 +60,7 @@ function Cadastro() {
 
     axios.post('http://localhost:8080/user/create', formData).then((response) => {
       if (response.status === 201) {
-        alert('Usuário cadastrado com sucesso!')
+        alert('Usuário cadastrado com sucesso! Verifique seu email.')
         setFormData({
           name: '',
           lastName: '',

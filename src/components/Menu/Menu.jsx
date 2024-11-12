@@ -43,7 +43,7 @@ function Menu() {
           </div>
           <div id="mainListDiv" className={`main_list ${menuActive ? 'show_list' : ''}`}>
             <ul className="navlinks">
-                <li><a href="#">Agendamento</a></li>
+                <li><a href="/agendamento">Agendamento</a></li>
                 <li><a href="#">Serviços</a></li>
                 <li><a href="#">Cursos</a></li>
                 <div className='div-nav-perfil'>
