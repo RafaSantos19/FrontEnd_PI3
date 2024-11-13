@@ -30,12 +30,25 @@ function Login() {
           alert('Login realizado com sucesso!');
           setTimeout(() => {
             window.location.href = '/';
-          }, 1000)
+          }, 1000);
         }
       })
       .catch((err) => {
+        // Verifique o status do erro e exiba uma mensagem apropriada
+        if (err.response) {
+          if (err.response.status === 403) {
+            alert('E-mail não verificado. Verifique seu e-mail para ativar a conta.');
+          } else if (err.response.status === 400) {
+            alert('Informações inválidas. Verifique os campos e tente novamente.');
+          } else if (err.response.status === 500) {
+            alert('Erro interno do servidor. Tente novamente mais tarde.');
+          } else {
+            alert('Erro ao fazer login. Verifique suas credenciais.');
+          }
+        } else {
+          alert('Erro de conexão. Verifique sua internet e tente novamente.');
+        }
         console.error('Erro ao fazer login: ', err);
-        alert('Erro ao fazer login. Verifique suas credenciais');
       });
   };
 
