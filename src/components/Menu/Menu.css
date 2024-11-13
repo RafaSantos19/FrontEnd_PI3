@@ -54,7 +54,6 @@
 }
 
 .nav div.main_list ul li a:hover {
-    /*color: #c28d51;*/
     opacity: 0.7;
 }
 
@@ -80,6 +79,75 @@
     margin-right: 4px;
     position: relative;
     top: 5px;
+}
+
+/*Estilo do modal*/
+.modal_agendamento {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Certifique-se de que o modal esteja acima de outros elementos */
+}
+
+.modal-content_agendamento {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 550px; /* Largura máxima do modal */
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-form_agendamento {
+    width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.modal-content_agendamento h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.modal-content_agendamento label {
+    font-size: large;
+    font-weight: bold;
+}
+
+/* .modal-content_agendamento p {
+    
+} */
+
+.modal-content_agendamento input, select {
+    width: 200px;
+    height: 50px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content_agendamento .button-agendamento {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #c28d51;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content_agendamento .button-agendamento:hover {
+    background-color: #E3C097;
 }
 
 /* Media query for mobile */

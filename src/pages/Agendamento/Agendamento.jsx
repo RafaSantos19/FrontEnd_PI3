@@ -11,8 +11,9 @@ function Agendamento() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/api/calendar/events');
+        const response = await axios.get('/calendar/get-events');
         setEvents(response.data);
+        console.log(response)
       } catch (error) {
         console.error('Erro ao buscar eventos:', error);
       }
@@ -20,13 +21,13 @@ function Agendamento() {
     fetchEvents();
   }, []);
 
-  useEffect(() => {
-    const eventsOnSelectedDate = events.filter(event => {
-      const eventDate = new Date(event.start.dateTime).toDateString();
-      return eventDate === selectedDate.toDateString();
-    });
-    setFilteredEvents(eventsOnSelectedDate);
-  }, [selectedDate, events]);
+  // useEffect(() => {
+  //   const eventsOnSelectedDate = events.filter(event => {
+  //     const eventDate = new Date(event.start.dateTime).toDateString();
+  //     return eventDate === selectedDate.toDateString();
+  //   });
+  //   setFilteredEvents(eventsOnSelectedDate);
+  // }, [selectedDate, events]);
 
   return (
     <div>
