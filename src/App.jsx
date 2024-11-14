@@ -6,6 +6,7 @@ import Login from './pages/Login/Login.jsx';
 import Perfil from './pages/Perfil/Perfil.jsx';
 import Agendamento from './pages/Agendamento/Agendamento.jsx';
 import Cursos from './pages/Cursos/Cursos.jsx';
+import Catalogo from './pages/Catalogo/Catalogo.jsx'
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/perfil' element={<Perfil />} />
         <Route path='/agendamento' element={<Agendamento />} />
         <Route path='/cursos' element={<Cursos />} />
+        <Route path='/catalogo' element={<Catalogo />} />
       </Routes>
     </Router>
   );

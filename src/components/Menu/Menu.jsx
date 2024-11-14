@@ -64,7 +64,7 @@ function Menu() {
           <div id="mainListDiv" className={`main_list ${menuActive ? 'show_list' : ''}`}>
             <ul className="navlinks">
               <li><a href="#" onClick={() => setShowAgendamentoModal(true)}>Agendamento</a></li>
-              <li><a href="#">Serviços</a></li>
+              <li><a href="/Catalogo">Catálogo</a></li>
               <li><a href="/cursos">Cursos</a></li>
               <div className='div-nav-perfil'>
                 <li><a href={isLoggedIn ? "/perfil" : "/login"}><img className='nav-logo-perfil' src={logo_perfil} alt='logo perfil' />{isLoggedIn ? "Perfil" : "Login"}</a></li>

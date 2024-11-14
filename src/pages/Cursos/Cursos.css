@@ -1,4 +1,4 @@
-.banner-home {
+.banner-cursos {
     width: 100%;
     height: 500px;
     background-color: #000;
@@ -10,50 +10,50 @@
     /* Um fundo temporário para testar */
 }
 
-.banner-image {
+.banner-image-cursos {
     height: 100%;
     /* Força a imagem a ocupar a altura definida */
     object-fit: cover;
     /* Garante que a imagem cubra todo o banner */
 }
 
-.div-banner{
+.div-banner-cursos{
     top: 50%;
     width: 80%;
     text-align: center;
 }
 
-.h1-banner{
+.h1-banner-cursos{
     color: #fff;
     margin: 20px;
     font-size: 50px;
 }
 
-.h6-banner{
+.h6-banner-cursos{
     color: #fff;
     margin: 20px;
     font-size: 20px;
 }
 
 /* Estilo para a Navegação do Header */
-.nav-header {
+.nav-header-cursos {
     text-align: center;
     padding-top: 12rem;
     padding-bottom: 12rem;
 }
 
-.title {
+.title-cursos {
     font-size: 3.20rem;
     padding: 0.5rem;
 }
 
-.subtitle {
+.subtitle-cursos {
     color: #4a4a4a;
     font-size: 2rem;
     margin-top: 1.5rem;
 }
 
-.button {
+.button-cursos {
     margin: auto;
     width: 9rem;
     padding: 0.90rem;
@@ -72,7 +72,7 @@
     justify-content: space-around;
 }
 
-.card {
+.card-cursos {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.card-image {
+.card-image-cursos {
     margin: 0 1rem;
     margin-top: -1.5rem;
     margin-bottom: 1.5rem;
@@ -96,17 +96,17 @@
 
     width: 100%;  /* Garante que a imagem ocupe 100% do container */
 }
-.card-image img {
+.card-image-cursos img {
     width: 100%;       /* Garante que a imagem ocupe 100% da largura do contêiner */
     height: auto;      /* Mantém a proporção da imagem */
     object-fit: cover; /* Faz com que a imagem cubra a área do contêiner sem deformação */
 }
 
-.card-content {
+.card-content-cursos {
     padding: 1.5rem;
 }
 
-.card-title {
+.card-title-cursos {
     margin-bottom: 1rem;
     font-size: 3rem;
     font-weight: 600;
@@ -114,7 +114,7 @@
     text-align: center;
 }
 
-.card-description {
+.card-description-cursos {
     text-align: center;
     font-size: 2rem;
     font-weight: 300;
@@ -124,12 +124,12 @@
 }
 
 /* Estilo para o Acordeão */
-.accordion-container {
+.accordion-container-cursos {
     padding: 1.5rem 0;
     
 }
 
-.accordion-item {
+.accordion-item-cursos {
     max-width: 90%;
     margin: 0 auto;
 
@@ -138,7 +138,7 @@
     border-radius: 1rem;
 }
 
-.accordion {
+.accordion-cursos {
 
     display: flex;
     justify-content: space-between;
@@ -154,18 +154,18 @@
     font-size: 1.5rem;
 }
 
-.accordion:hover {
+.accordion-cursos:hover {
     background-color: #3F3A37;
     color: #F3EADC;
 }
 
-.accordion-title {
+.accordion-title-cursos {
     text-align: center;
     font-size: 3rem;
 }
 
 /* Estilo para o painel de conteúdo do acordeão */
-.panel {
+.panel-cursos {
     border-top: 2px solid #ddd;
     display: none;
     overflow: hidden;
@@ -175,12 +175,12 @@
     background-color: #F3EADC;
 }
 
-.panel.active {
+.panel-cursos.active {
     display: block;
     max-height: 500px; /* Definindo um valor máximo de altura para o painel quando ele estiver visível */
 }
 
-.panel-content {
+.panel-content-cursos {
     padding: 0.5rem 0;
     text-align: left;
     padding-left: 1.5rem;
@@ -190,28 +190,28 @@
     padding-bottom: 5%;
 }
 
-.panel-content p {
+.panel-content-cursos p {
     margin: 1rem 0;
 }
 
 /* Adicionando uma transição suave quando o painel for mostrado ou ocultado */
-.panel {
+.panel-cursos {
     max-height: 0;
     padding: 0;
     visibility: hidden;
 }
 
-.panel.active {
+.panel-cursos.active {
     max-height: 500px; /* altura ajustável */
     padding: 1rem 0;
     visibility: visible;
 }
 @media (max-width: 904px) {
-    .card{
+    .card-cursos{
        width: 100%;
     }
 
-    .card-title {
+    .card-title-cursos {
         margin-bottom: 0.5rem;
         font-size: 1.86rem;
         font-weight: 600;
@@ -219,24 +219,24 @@
         text-align: center;
         line-height: 0rem;
     }
-    .card-image {
+    .card-image-cursos {
         width: 90%;  /* Ajusta o tamanho do card em telas médias */
         margin: 0 auto; /* Centraliza o card */
     }
     
-    .card-image img {
+    .card-image-cursos img {
         width: 100%; /* Garante que a imagem preencha 100% da largura do card */
         height: auto; /* Mantém a proporção da imagem */
     }
     
-    .card-description {
+    .card-description-cursos {
         text-align: center;
         font-size: 1.25rem;
         font-weight: 300;
         padding: 0.5rem;
         
     }
-    .accordion {
+    .accordion-cursos {
 
         display: flex;
         justify-content: space-between;
@@ -251,11 +251,11 @@
         transition: 0.4s;
         font-size: 1.5rem;
     }
-    .accordion-title {
+    .accordion-title-cursos {
         text-align: center;
         font-size: 2rem;
     }
-    .panel-content {
+    .panel-content-cursos {
         padding: 0.5rem 0;
         text-align: left;
         padding-left: 1.5rem;
@@ -266,110 +266,95 @@
     }
 }
 @media (min-width: 1500px) {
-    .panel-content {
+    .panel-content-cursos {
        padding-top: 2%; 
        padding-left: 15%;
        padding-right: 15%;
    
   
     }
-    .accordion {
+    .accordion-cursos {
         justify-content: center; /* Centraliza os itens dentro do accordion */
     }
     
-    .accordion-title {
+    .accordion-title-cursos {
         text-align: center; /* Centraliza o texto do título */
         flex: 1; /* Garante que o título ocupe o espaço necessário */
     }
-    .card-image {
+    .card-image-cursos {
         width: 80%;  /* Ajusta o card para uma largura maior */
         margin: 0 auto; /* Centraliza o card */
     }
 
-    .card-image img {
+    .card-image-cursos img {
         width: 100%; /* A imagem vai ocupar 100% da largura do contêiner */
         height: auto; /* Mantém a proporção da imagem */
     }
 }
 @media (min-width: 2500px){
-    .card{
+    .card-cursos{
         width: 50%;
     }
    
-        .card-image {
+        .card-image-cursos {
             width: 70%;  /* Ajusta o tamanho do card para telas muito grandes */
             margin: 0 auto; /* Centraliza o card */
         }
     
-        .card-image img {
+        .card-image-cursos img {
             width: 100%; /* A imagem vai ocupar 100% da largura do contêiner */
             height: auto; /* Mantém a proporção da imagem */
         }
     
 }
 @media (max-width: 1064px) {
-    .fundo-cor{
-        width: 90%;
-    }
-    .banner-image{
+    .banner-image-cursos{
         display: none;
     }
-    .div-banner{
+    .div-banner-cursos{
         width: 100%;
     }
 }
-@media (max-width: 904px) {
-    .container{
-        gap: 5rem;
-    }
-}
 @media (max-width: 780px) {
-    .fundo-cor{
-        font-size: 0.75rem;
-        flex-direction: column;
-    }
     h1 {
         font-size: 1rem;
     }
-    .card-home {
+    .card-cursos {
         flex: 1 1 100%;
         /* Muda para 100% em telas menores */
         max-width: 60%;
         /* Remove a largura máxima */
         text-align: center;
     }
-    .description{
+    .description-cursos{
         width: 100%;
     }
-    .content{
+    .content-cursos{
         width: 100%;
     }
 }
 @media (max-width: 554px){
-    .fundo-cor{
-        width: 100%;
-    }
-    .description{
+    .description-cursos{
         padding: 1rem;
     }
-    .subtitle{
+    .subtitle-cursos{
         font-size: 1.5rem;
     }
 }
 @media (max-width: 454px) {
-    .h1-banner{
+    .h1-banner-cursos{
         color: #fff;
         margin: 20px;
         font-size: 40px;
     }
     
-    .h6-banner{
+    .h6-banner-cursos{
         color: #fff;
         margin: 20px;
         font-size: 16px;
     }
 
-    .card-home{
+    .card-cursos{
         max-width: none;
         width: 100%;
     }
