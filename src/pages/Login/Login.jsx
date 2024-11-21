@@ -25,8 +25,11 @@ function Login() {
     axios.post('http://localhost:8080/user/signin', formData)
       .then((response) => {
         if (response.status === 200) {
-          const token = response.data.token; // Supondo que o token esteja na resposta
-          localStorage.setItem('authToken', token); // Armazena o token no localStorage
+          const token = response.data.token; 
+          const userEmail = response.data.userEmail; 
+          localStorage.setItem('authToken', token); 
+          localStorage.setItem('userEmail', userEmail); 
+
           alert('Login realizado com sucesso!');
           setTimeout(() => {
             window.location.href = '/';
@@ -34,7 +37,6 @@ function Login() {
         }
       })
       .catch((err) => {
-        // Verifique o status do erro e exiba uma mensagem apropriada
         if (err.response) {
           if (err.response.status === 403) {
             alert('E-mail não verificado. Verifique seu e-mail para ativar a conta.');

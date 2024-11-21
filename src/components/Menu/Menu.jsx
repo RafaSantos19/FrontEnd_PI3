@@ -19,6 +19,7 @@ function Menu() {
   const handleAgendar = async () => {
     try {
       const event = {
+        email: localStorage.getItem('userEmail'),
         summary: service === 'servico1' ? 'Brow Lamination' : 'Dermaplaning',
         location: 'Local do Serviço',
         description: 'Descrição do Serviço',
