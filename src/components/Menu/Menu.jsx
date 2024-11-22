@@ -12,9 +12,39 @@ function Menu() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState('');
   const [service, setService] = useState('servico1');
+  const [occupiedTimes, setOccupiedTimes] = useState([]);
 
   const handleMenuClick = () => setMenuActive(!menuActive);
   const handleScroll = () => setNavbarScrolled(window.scrollY > 50);
+
+  const handleDateChange = async (date) => {
+    setSelectedDate(date);
+
+    try {
+      const formattedDate = date.toISOString().split('T')[0]; // Formatar a data para YYYY-MM-DD
+      const response = await fetch(`http://localhost:8080/calendar/list-by-date?date=${formattedDate}`);
+
+      if (response.ok) {
+        const events = await response.json();
+
+        const times = events.map((event) => {
+          const start = new Date(event.start.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          const end = new Date(event.end.dateTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          return `${start} - ${end}`;
+        });
+
+        setOccupiedTimes(times);
+      } else {
+        console.error('Erro ao buscar horários ocupados');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar horários ocupados:', error);
+    }
+  };
+
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+  };
 
   const handleAgendar = async () => {
     try {
@@ -95,11 +125,30 @@ function Menu() {
               <br /><br />
 
               <label>Data</label>
-              <Calendar className="calendar-agendamento" onChange={setSelectedDate} value={selectedDate} />
+              <Calendar
+                className="calendar-agendamento"
+                onChange={handleDateChange}
+                value={selectedDate}
+                tileDisabled={({ date }) => date < new Date().setHours(0, 0, 0, 0)}
+              />
 
               <br />
 
-              <label>Horário</label>
+              {occupiedTimes.length > 0 ? (
+                <div>
+                  <label>Horários Ocupados</label>
+                  <ul className="occupied-times-list">
+                    {occupiedTimes.map((time, index) => (
+                      <li key={index}>{time}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p>Não há horários ocupados neste dia.</p>
+              )}
+
+              <br />
+              <label>Selecione um horário</label>
               <br />
               <input type='time' value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} />
             </div>
