@@ -56,23 +56,28 @@ function Menu() {
         startDateTime: `${selectedDate.toISOString().split('T')[0]}T${selectedTime}:00-03:00`,
         endDateTime: `${selectedDate.toISOString().split('T')[0]}T${selectedTime}:30-03:00`,
       };
-
+      const token = localStorage.getItem("authToken");
       const response = await fetch('http://localhost:8080/calendar/create-events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(event),
+        body: JSON.stringify(event)
       });
 
       if (response.ok) {
         const data = await response.json();
         alert(`Evento criado com sucesso! Link do evento: ${data.link}`);
         setShowAgendamentoModal(false);
-      } else {
-        alert('Erro ao criar o evento.');
-      }
+      } else if(!token) {
+        alert("Usuário não autenticado");
+        window.location.href = "/login"
+      } else if (response.status === 409) {
+        alert('Horário ocupado, tente agendar em outro horário.');
+      } 
     } catch (error) {
+
       console.error('Erro ao criar evento:', error);
       alert('Erro ao criar o evento.');
     }

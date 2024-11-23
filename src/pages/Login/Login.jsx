@@ -28,7 +28,7 @@ function Login() {
           const token = response.data.token; 
           const userEmail = response.data.userEmail; 
           localStorage.setItem('authToken', token); 
-          localStorage.setItem('userEmail', userEmail); 
+          // localStorage.setItem('userEmail', userEmail); 
 
           alert('Login realizado com sucesso!');
           setTimeout(() => {

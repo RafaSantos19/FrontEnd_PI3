@@ -15,6 +15,7 @@ function Perfil() {
   const [updatePassword, setUpdatePassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [userEvents, setUserEvents] = useState([]);
 
   const formatPhone = (value) => {
     const cleaned = value.replace(/\D/g, '');
@@ -25,7 +26,6 @@ function Perfil() {
     return value;
   };
 
-  //TODO: Melhorar o logout (tirar no backend também)
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     window.location.href = '/login';
@@ -100,6 +100,34 @@ function Perfil() {
     }
   };
 
+  const fetchUserEvents = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const response = await axios.get(`http://localhost:8080/calendar/list-user-events`, {
+        headers: { Authorization: `Bearer ${token}` },
+        params: { email: userData.email }
+      });
+      setUserEvents(response.data);
+      alert(response.data)
+    } catch (error) {
+      console.error("Erro ao buscar agendamentos do usuário:", error);
+    }
+  };
+
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await axios.delete(`http://localhost:8080/events/${eventId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      alert("Agendamento deletado com sucesso!");
+      setUserEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId)); // Remove o evento do estado
+    } catch (error) {
+      console.error("Erro ao deletar agendamento:", error);
+      alert("Erro ao deletar o agendamento.");
+    }
+  };
+
   const openPasswordModal = () => {
     setResetEmail(userData.email);
     setUpdatePassword(true);
@@ -111,7 +139,17 @@ function Perfil() {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+     if (userData.email) {
+      fetchUserEvents();
+    }
+  }, [userData.email]);
+
+  // useEffect(() => {
+  //   if (userData.email) {
+  //     fetchUserEvents();
+  //   }
+  // }, [userData.email]);
+  console.log(userEvents);
 
   return (
     <section className='section-perfil'>
@@ -191,11 +229,25 @@ function Perfil() {
         <div className='historico-perfil'>
           <center><h1>Agenda</h1></center>
           <br />
-          <iframe 
-            src="https://calendar.google.com/calendar/u/0/embed?src=426a9c66fdbae0e52a9617b61ac1eb205748e5d0c7f5af1b21fc18fca3ba02cd@group.calendar.google.com&ctz=America/Sao_Paulo"
-            style={{ border: 'none', width: '100%', height: '600px' }}
-            title="Calendário Google"
-          ></iframe>
+          {userEvents.length > 0 ? (
+            <div className="cards-container">
+              {userEvents.map((event) => (
+                <div className="event-card" key={event.id}>
+                  <h3>{event.summary}</h3>
+                  <p>{event.description}</p>
+                  <p>
+                    <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
+                  </p>
+                  <p>
+                    <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
+                  </p>
+                  <button onClick={() => handleDeleteEvent(event.id)}>Deletar</button>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>Você não possui agendamentos no momento.</p>
+          )}
         </div>
       </div>
 
