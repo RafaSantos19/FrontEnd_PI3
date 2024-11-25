@@ -3,6 +3,8 @@ import Menu from '../../components/Menu/Menu';
 import Footer from '../../components/Footer/Footer';
 import relogioIcon from '../../assets/relogio1.png'
 import './Catalogo.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import dermaplaning1 from '../../assets/catalogoImages/dermaplaning/dermaplaning1.jpg';
 import dermaplaning2 from '../../assets/catalogoImages/dermaplaning/dermaplaning2.jpg';
@@ -38,6 +40,7 @@ import designSimples3 from '../../assets/catalogoImages/designSimples/designSimp
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -45,15 +48,19 @@ const responsive = {
     items: 5
   },
   desktop: {
-    breakpoint: { max: 2000, min: 1024 },
+    breakpoint: { max: 2200, min:  1850},
     items: 4
   },
+  desktopMenor: {
+    breakpoint: { max: 1850, min: 1024 },
+    items: 3
+  },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
+    breakpoint: { max: 1300, min: 464 },
     items: 2
   },
   mobile: {
-    breakpoint: { max: 464, min: 0 },
+    breakpoint: { max: 730, min: 0 },
     items: 1
   }
 };
@@ -241,6 +248,5 @@ function Catalogo() {
         </div>
     )   
 }
-
 
 export default Catalogo;

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import bgHeader from '../../assets/bg-header-cortado.png';
 import tailine from '../../assets/tailine.png';
 import Menu from '../../components/Menu/Menu';
@@ -30,7 +29,7 @@ function Home() {
                         <p>Com coloração</p>
                     </div>
                     <div className="div-card-button">
-                        <a href="" className="button">SAIBA MAIS</a>
+                        <a href="/Catalogo" className="button">SAIBA MAIS</a>
                     </div>
                 </div>
 
@@ -41,7 +40,7 @@ function Home() {
                         <p className="font-medium">Mais alinhadas ou mais selvagens, você escolhe!</p>
                     </div>
                     <div className="div-card-button">
-                        <a href="" className="button">SAIBA MAIS</a>
+                        <a href="/Catalogo" className="button">SAIBA MAIS</a>
                     </div>    
                 </div>
 
@@ -53,7 +52,7 @@ function Home() {
                         <p class="font-medium">Feito com dermógrafo e anestésico zero dor.</p>
                     </div>
                     <div className="div-card-button">
-                        <a href="" className="button">SAIBA MAIS</a>
+                        <a href="/Catalogo" className="button">SAIBA MAIS</a>
                     </div>
                 </div>
 
@@ -64,7 +63,7 @@ function Home() {
                         <p>Além do outro benefício é que a técnica pinta, hidrata e reconstrói os cílios!</p>
                     </div>
                     <div className="div-card-button">
-                        <a href="" className="button">SAIBA MAIS</a>
+                        <a href="/Catalogo" className="button">SAIBA MAIS</a>
                     </div>
                 </div>
 
@@ -75,7 +74,7 @@ function Home() {
                         <p>Ele remove células mortas e pelos finos, revelando uma pele mais macia e suave.</p>
                     </div>
                     <div className="div-card-button">
-                        <a href="" className="button">SAIBA MAIS</a>
+                        <a href="/Catalogo" className="button">SAIBA MAIS</a>
                     </div>
                 </div>
 
@@ -85,7 +84,7 @@ function Home() {
                         <p>Domine as duas técnicas que estão bombando na estética e se torne uma profissional de sucesso!</p>
                     </div>
                     <div className="div-card-button">
-                        <a href="" className="button">SAIBA MAIS</a>
+                        <a href="Catalogo" className="button">SAIBA MAIS</a>
                     </div>
                 </div>
             </section>

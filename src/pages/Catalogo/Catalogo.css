@@ -99,7 +99,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 700px) {
     .container-card-catalogo{
         width: 100%;
     }

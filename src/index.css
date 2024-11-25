@@ -1,0 +1,10 @@
+body.high-contrast {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  body.high-contrast a {
+    color: #00f;
+    text-decoration: underline;
+  }
+  

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import logoLogin from '../../assets/login.svg'
 import './Cadastro.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Cadastro() {
 
@@ -49,18 +51,18 @@ function Cadastro() {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (formData.password !== formData.conPassword) {
-      alert('As senhas não coincidem!');
+      toast.error('As senhas não coincidem!', {theme: 'colored', autoClose:6000});
       return;
     }
 
     if (!passwordRegex.test(formData.password)) {
-      alert('A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.');
+      toast.warning('A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.', {theme: 'colored', autoClose:6000});
       return;
     }
 
     axios.post('http://localhost:8080/user/create', formData).then((response) => {
       if (response.status === 201) {
-        alert('Usuário cadastrado com sucesso! Verifique seu email para logar.')
+        toast.success('Usuário cadastrado com sucesso! Verifique seu email para logar.', {theme: 'colored', autoClose:6000}, {theme: 'colored', autoClose:6000})
         setFormData({
           name: '',
           lastName: '',
@@ -73,7 +75,7 @@ function Cadastro() {
       }
     }).catch((err) => {
       console.error('Erro ao cadastrar usuário: ', err);
-      alert('Erro ao cadastrar usuário. Tente novamente.');
+      toast.error('Erro ao cadastrar usuário. Tente novamente.', {theme: 'colored', autoClose:6000});
     });
   };
 
@@ -326,7 +328,7 @@ function Cadastro() {
             </div>
           </div>
         )}
-
+        <ToastContainer/>
       </section>
     </main>
   )

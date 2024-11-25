@@ -12,6 +12,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -66,11 +68,11 @@ function AdminAgendamentos() {
         headers: { Authorization: `Bearer ${token}` },
         params: { eventId: eventId },
       });
-      alert('Agendamento deletado com sucesso!');
+      toast.success('Agendamento deletado com sucesso!', {theme: 'colored', autoClose:6000});
       setAgendamentos((prev) => prev.filter((event) => event.id !== eventId));
     } catch (error) {
       console.error('Erro ao deletar agendamento:', error);
-      alert('Erro ao deletar o agendamento.');
+      toast.error('Erro ao deletar o agendamento.', {theme: 'colored', autoClose:6000});
     }
   };
 
@@ -162,6 +164,7 @@ function AdminAgendamentos() {
           </div>
         </div>
       </div>
+      <ToastContainer/>
     </section>
   );
 }

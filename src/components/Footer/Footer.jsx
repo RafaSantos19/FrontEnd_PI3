@@ -11,22 +11,22 @@ function Footer() {
       <div className='container-footer'>        
         <ul className='ul-footer'>
           <li className='li-footer'>
-            <h1 className='h1-footer'>SERVIÇOS</h1>
+            <h1 className='h1-footer'>Catálogo</h1>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>SOBRANCELHAS</a>
+            <a href='/Catalogo' className='footer-link'>SOBRANCELHAS</a>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>MICROPIGMENTAÇÃO</a>
+            <a href='/Catalogo' className='footer-link'>MICROPIGMENTAÇÃO</a>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>BROW LAMINATION</a>
+            <a href='/Catalogo' className='footer-link'>BROW LAMINATION</a>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>DERMAPLANING</a>
+            <a href='/Catalogo' className='footer-link'>DERMAPLANING</a>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>LASH LIFTING</a>
+            <a href='/Catalogo' className='footer-link'>LASH LIFTING</a>
           </li>
         </ul>
           
@@ -50,10 +50,10 @@ function Footer() {
             <h1 className='h1-footer'>CURSOS</h1>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>TOPICO1</a>
+            <a href='/Cursos' className='footer-link'>TOPICO1</a>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>TOPICO2</a>
+            <a href='/Cursos' className='footer-link'>TOPICO2</a>
           </li>
         </ul> 
 

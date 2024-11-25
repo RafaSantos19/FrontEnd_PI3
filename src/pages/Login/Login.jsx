@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import logoLogin from '../../assets/login.svg';
 import './Login.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -35,7 +37,7 @@ function Login() {
           sessionStorage.setItem('userPhone', userPhone); 
           sessionStorage.setItem('userName', userName); 
 
-          alert('Login realizado com sucesso!');
+          toast.success('Login realizado com sucesso!', {theme: 'colored', autoClose:6000});
           setTimeout(() => {
             window.location.href = '/';
           }, 1000);
@@ -44,16 +46,16 @@ function Login() {
       .catch((err) => {
         if (err.response) {
           if (err.response.status === 403) {
-            alert('E-mail não verificado. Verifique seu e-mail para ativar a conta.');
+            toast.error('E-mail não verificado. Verifique seu e-mail para ativar a conta.', {theme: 'colored', autoClose:6000});
           } else if (err.response.status === 400) {
-            alert('Informações inválidas. Verifique os campos e tente novamente.');
+            toast.error('Informações inválidas. Verifique os campos e tente novamente.', {theme: 'colored', autoClose:6000});
           } else if (err.response.status === 500) {
-            alert('Erro interno do servidor. Tente novamente mais tarde.');
+            toast.error('Erro interno do servidor. Tente novamente mais tarde.', {theme: 'colored', autoClose:6000});
           } else {
-            alert('Erro ao fazer login. Verifique suas credenciais.');
+            toast.error('Erro ao fazer login. Verifique suas credenciais.', {theme: 'colored', autoClose:6000});
           }
         } else {
-          alert('Erro de conexão. Verifique sua internet e tente novamente.');
+          toast.error('Erro de conexão. Verifique sua internet e tente novamente.', {theme: 'colored', autoClose:6000});
         }
         console.error('Erro ao fazer login: ', err);
       });
@@ -61,11 +63,11 @@ function Login() {
 
   const handleForgotPassword = () => {
     axios.post('http://localhost:8080/user/forgot-password', { email: resetEmail }).then((response) => {
-      alert('Email de recuperação enviado!');
+      toast.success('Email de recuperação enviado!', {theme: 'colored', autoClose:6000});
       setForgotPassword(false);
     }).catch((err) => {
       console.error('Erro ao enviar email de recuperação: ', err);
-      alert('Erro ao enviar email de recuperação. Verifique o email inserido.');
+      toast.error('Erro ao enviar email de recuperação. Verifique o email inserido.', {theme: 'colored', autoClose:6000});
     });
   };
 
@@ -113,6 +115,7 @@ function Login() {
             </div>
           </div>
         )}
+        <ToastContainer/>
       </section>
     </main>
   );

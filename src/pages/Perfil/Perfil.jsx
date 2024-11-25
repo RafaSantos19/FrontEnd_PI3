@@ -3,6 +3,8 @@ import axios from 'axios';
 import './Perfil.css';
 import logoLogin from '../../assets/login.svg';
 import Menu from '../../components/Menu/Menu';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Perfil() {
   const [userData, setUserData] = useState({
@@ -36,11 +38,11 @@ function Perfil() {
 
   const handleUpdatePassword = () => {
     axios.post('http://localhost:8080/user/forgot-password', { email: resetEmail }).then((response) => {
-      alert('Email de alteração enviado!');
+      toast.success('Email de alteração enviado!', {theme: 'colored', autoClose:6000});
       setUpdatePassword(false);
     }).catch((err) => {
       console.error('Erro ao enviar email de alteração: ', err);
-      alert('Erro ao enviar email de alteração. Verifique o email inserido.');
+      toast.error('Erro ao enviar email de alteração. Verifique o email inserido.', {theme: 'colored', autoClose:6000});
     });
   };
 
@@ -79,27 +81,27 @@ function Perfil() {
       await axios.put('http://localhost:8080/user/update', userData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert("Dados atualizados com sucesso!");
+      toast.success("Dados atualizados com sucesso!", {theme: 'colored', autoClose:6000});
     } catch (error) {
       console.error("Erro ao atualizar os dados do usuário:", error);
-      alert("Erro ao atualizar os dados.");
+      toast.error("Erro ao atualizar os dados.", {theme: 'colored', autoClose:6000});
     }
   };
 
   const handleDeleteAccount = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      if (!token) return alert("Usuário não autenticado.");
+      if (!token) return toast.error("Usuário não autenticado.", {theme: 'colored', autoClose:6000});
 
       await axios.delete('http://localhost:8080/user/delete', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      alert("Conta deletada com sucesso.");
+      toast.success("Conta deletada com sucesso.", {theme: 'colored', autoClose:6000});
       handleLogout(); // Desloga o usuário após a exclusão da conta
     } catch (error) {
       console.error("Erro ao deletar a conta:", error);
-      alert("Erro ao deletar a conta.");
+      toast.error("Erro ao deletar a conta.", {theme: 'colored', autoClose:6000});
     }
   };
 
@@ -123,11 +125,11 @@ function Perfil() {
         headers: { Authorization: `Bearer ${token}` },
         params: { eventId: eventId }
       });
-      alert("Agendamento deletado com sucesso!");
+      toast.success("Agendamento deletado com sucesso!", {theme: 'colored', autoClose:6000});
       setUserEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId)); // Remove o evento do estado
     } catch (error) {
       console.error("Erro ao deletar agendamento:", error);
-      alert("Erro ao deletar o agendamento.");
+      toast.error("Erro ao deletar o agendamento.", {theme: 'colored', autoClose:6000});
     }
   };
 
@@ -287,6 +289,7 @@ function Perfil() {
           </div>
         </div>
       )}
+      <ToastContainer/>
     </section>
   );
 }
