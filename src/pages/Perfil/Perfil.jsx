@@ -28,6 +28,9 @@ function Perfil() {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    sessionStorage.removeItem('userEmail');
+    sessionStorage.removeItem('userName');
+    sessionStorage.removeItem('userPhone');
     window.location.href = '/login';
   };
 
@@ -108,7 +111,6 @@ function Perfil() {
         params: { email: userData.email }
       });
       setUserEvents(response.data);
-      alert(response.data)
     } catch (error) {
       console.error("Erro ao buscar agendamentos do usuário:", error);
     }
@@ -117,8 +119,9 @@ function Perfil() {
   const handleDeleteEvent = async (eventId) => {
     try {
       const token = localStorage.getItem('authToken');
-      await axios.delete(`http://localhost:8080/events/${eventId}`, {
-        headers: { Authorization: `Bearer ${token}` }
+      await axios.delete(`http://localhost:8080/calendar/delete-events`, {
+        headers: { Authorization: `Bearer ${token}` },
+        params: { eventId: eventId }
       });
       alert("Agendamento deletado com sucesso!");
       setUserEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId)); // Remove o evento do estado
@@ -139,32 +142,25 @@ function Perfil() {
 
   useEffect(() => {
     fetchUserData();
-     if (userData.email) {
+    if (userData.email) {
       fetchUserEvents();
     }
   }, [userData.email]);
 
-  // useEffect(() => {
-  //   if (userData.email) {
-  //     fetchUserEvents();
-  //   }
-  // }, [userData.email]);
-  console.log(userEvents);
-
   return (
     <section className='section-perfil'>
-      <Menu/>
+      <Menu />
       <div className='div-perfil'>
         <div className='dados-editaveis-perfil'>
           <div className='div-foto-perfil'>
-            <h1>Foto de perfil</h1>
+            <center><h1>Foto de perfil</h1></center>
             <img src={logoLogin} alt="Foto de perfil" />
             <div className="container-perfil">
-                <button onClick={handleLogout}>Sair</button>
+              <button onClick={handleLogout}>Sair</button>
             </div>
           </div>
           <div className='div-dados-perfil'>
-            <h1>Dados Gerais</h1>
+            <center><h1>Dados Gerais</h1></center>
             <fieldset className='fieldset-perfil'>
               <div className="container-perfil">
                 <input
@@ -219,7 +215,7 @@ function Perfil() {
             <fieldset className='fieldset-perfil'>
               <div className="container-perfil">
                 <button onClick={handleSave}>Salvar Edições</button>
-              </div>              
+              </div>
               <div className="container-perfil">
                 <button onClick={confirmDeleteAccount}>Deletar Conta</button> {/* Botão para abrir o modal */}
               </div>
@@ -227,22 +223,36 @@ function Perfil() {
           </div>
         </div>
         <div className='historico-perfil'>
-          <center><h1>Agenda</h1></center>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <h1>Agenda</h1>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ marginLeft: '10px', color: '#4285F4', textDecoration: 'none' }}
+            >
+              <span className="material-icons" style={{ fontSize: '24px' }}>event</span>
+            </a>
+          </div>
           <br />
           {userEvents.length > 0 ? (
             <div className="cards-container">
               {userEvents.map((event) => (
-                <div className="event-card" key={event.id}>
+                <center>
+                  <div className="event-card" key={event.id}>
                   <h3>{event.summary}</h3>
-                  <p>{event.description}</p>
+                  <p>
+                    <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}<br />
+                    <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
+                  </p>
                   <p>
                     <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
                   </p>
                   <p>
                     <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
                   </p>
-                  <button onClick={() => handleDeleteEvent(event.id)}>Deletar</button>
+                  <center><button onClick={() => handleDeleteEvent(event.id)}>Deletar</button></center>
                 </div>
+                </center>
               ))}
             </div>
           ) : (

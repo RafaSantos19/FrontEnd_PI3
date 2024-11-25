@@ -7,6 +7,7 @@ import Perfil from './pages/Perfil/Perfil.jsx';
 import Agendamento from './pages/Agendamento/Agendamento.jsx';
 import Cursos from './pages/Cursos/Cursos.jsx';
 import Catalogo from './pages/Catalogo/Catalogo.jsx'
+import AdminAgendamentos from './pages/Admin/AdminAgendamentos.jsx';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/agendamento' element={<Agendamento />} />
         <Route path='/cursos' element={<Cursos />} />
         <Route path='/catalogo' element={<Catalogo />} />
+        <Route path='/adm' element={<AdminAgendamentos />} />
       </Routes>
     </Router>
   );

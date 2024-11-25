@@ -13,7 +13,7 @@ function Menu() {
   const [selectedTime, setSelectedTime] = useState('');
   const [service, setService] = useState('servico1');
   const [occupiedTimes, setOccupiedTimes] = useState([]);
-
+  
   const handleMenuClick = () => setMenuActive(!menuActive);
   const handleScroll = () => setNavbarScrolled(window.scrollY > 50);
 
@@ -49,10 +49,10 @@ function Menu() {
   const handleAgendar = async () => {
     try {
       const event = {
-        email: localStorage.getItem('userEmail'),
+        email: sessionStorage.getItem('userEmail'),
         summary: service === 'servico1' ? 'Brow Lamination' : 'Dermaplaning',
         location: 'Local do Serviço',
-        description: 'Descrição do Serviço',
+        description: `${sessionStorage.getItem('userName')} Telefone: ${sessionStorage.getItem('userPhone')} `,
         startDateTime: `${selectedDate.toISOString().split('T')[0]}T${selectedTime}:00-03:00`,
         endDateTime: `${selectedDate.toISOString().split('T')[0]}T${selectedTime}:30-03:00`,
       };
@@ -68,7 +68,7 @@ function Menu() {
 
       if (response.ok) {
         const data = await response.json();
-        alert(`Evento criado com sucesso! Link do evento: ${data.link}`);
+        alert(`Evento criado com sucesso!`);
         setShowAgendamentoModal(false);
       } else if(!token) {
         alert("Usuário não autenticado");
@@ -76,6 +76,7 @@ function Menu() {
       } else if (response.status === 409) {
         alert('Horário ocupado, tente agendar em outro horário.');
       } 
+      window.location.reload()
     } catch (error) {
 
       console.error('Erro ao criar evento:', error);

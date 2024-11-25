@@ -27,8 +27,13 @@ function Login() {
         if (response.status === 200) {
           const token = response.data.token; 
           const userEmail = response.data.userEmail; 
+          const userPhone = response.data.userPhone; 
+          const userName = response.data.userName;
+           
           localStorage.setItem('authToken', token); 
-          // localStorage.setItem('userEmail', userEmail); 
+          sessionStorage.setItem('userEmail', userEmail); 
+          sessionStorage.setItem('userPhone', userPhone); 
+          sessionStorage.setItem('userName', userName); 
 
           alert('Login realizado com sucesso!');
           setTimeout(() => {
