@@ -9,14 +9,20 @@ function Menu() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showAgendamentoModal, setShowAgendamentoModal] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleMenuClick = () => setMenuActive(!menuActive);
   const handleScroll = () => setNavbarScrolled(window.scrollY > 50);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
+
     const token = localStorage.getItem('authToken');
+    const email = sessionStorage.getItem('userEmail');
+
     setIsLoggedIn(!!token);
+    setIsAdmin(email === "serginhonerdola@gmail.com");
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -32,8 +38,19 @@ function Menu() {
               <li><a href="#" onClick={() => setShowAgendamentoModal(true)}>Agendamento</a></li>
               <li><a href="/Catalogo">Catálogo</a></li>
               <li><a href="/cursos">Cursos</a></li>
+
+              {/* Botão para /adm, exibido apenas se o usuário for admin */}
+              {isAdmin && (
+                <li><a href="/adm">Admin</a></li>
+              )}
+
               <div className="div-nav-perfil">
-                <li><a href={isLoggedIn ? "/perfil" : "/login"}><img className="nav-logo-perfil" src={logo_perfil} alt="logo perfil" />{isLoggedIn ? "Perfil" : "Login"}</a></li>
+                <li>
+                  <a href={isLoggedIn ? "/perfil" : "/login"}>
+                    <img className="nav-logo-perfil" src={logo_perfil} alt="logo perfil" />
+                    {isLoggedIn ? "Perfil" : "Login"}
+                  </a>
+                </li>
               </div>
             </ul>
           </div>

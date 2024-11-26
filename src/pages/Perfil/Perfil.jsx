@@ -17,7 +17,9 @@ function Perfil() {
   const [updatePassword, setUpdatePassword] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteEventModal, setShowDeleteEventModal] = useState(false);
   const [userEvents, setUserEvents] = useState([]);
+  const [selectedEventId, setSelectedEventId] = useState(null);
 
   const formatPhone = (value) => {
     const cleaned = value.replace(/\D/g, '');
@@ -38,11 +40,11 @@ function Perfil() {
 
   const handleUpdatePassword = () => {
     axios.post('http://localhost:8080/user/forgot-password', { email: resetEmail }).then((response) => {
-      toast.success('Email de alteração enviado!', {theme: 'colored', autoClose:6000});
+      toast.success('Email de alteração enviado!', { theme: 'colored', autoClose: 6000 });
       setUpdatePassword(false);
     }).catch((err) => {
       console.error('Erro ao enviar email de alteração: ', err);
-      toast.error('Erro ao enviar email de alteração. Verifique o email inserido.', {theme: 'colored', autoClose:6000});
+      toast.error('Erro ao enviar email de alteração. Verifique o email inserido.', { theme: 'colored', autoClose: 6000 });
     });
   };
 
@@ -81,27 +83,27 @@ function Perfil() {
       await axios.put('http://localhost:8080/user/update', userData, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      toast.success("Dados atualizados com sucesso!", {theme: 'colored', autoClose:6000});
+      toast.success("Dados atualizados com sucesso!", { theme: 'colored', autoClose: 6000 });
     } catch (error) {
       console.error("Erro ao atualizar os dados do usuário:", error);
-      toast.error("Erro ao atualizar os dados.", {theme: 'colored', autoClose:6000});
+      toast.error("Erro ao atualizar os dados.", { theme: 'colored', autoClose: 6000 });
     }
   };
 
   const handleDeleteAccount = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      if (!token) return toast.error("Usuário não autenticado.", {theme: 'colored', autoClose:6000});
+      if (!token) return toast.error("Usuário não autenticado.", { theme: 'colored', autoClose: 6000 });
 
       await axios.delete('http://localhost:8080/user/delete', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      toast.success("Conta deletada com sucesso.", {theme: 'colored', autoClose:6000});
+      toast.success("Conta deletada com sucesso.", { theme: 'colored', autoClose: 6000 });
       handleLogout(); // Desloga o usuário após a exclusão da conta
     } catch (error) {
       console.error("Erro ao deletar a conta:", error);
-      toast.error("Erro ao deletar a conta.", {theme: 'colored', autoClose:6000});
+      toast.error("Erro ao deletar a conta.", { theme: 'colored', autoClose: 6000 });
     }
   };
 
@@ -125,11 +127,11 @@ function Perfil() {
         headers: { Authorization: `Bearer ${token}` },
         params: { eventId: eventId }
       });
-      toast.success("Agendamento deletado com sucesso!", {theme: 'colored', autoClose:6000});
+      toast.success("Agendamento deletado com sucesso!", { theme: 'colored', autoClose: 6000 });
       setUserEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId)); // Remove o evento do estado
     } catch (error) {
       console.error("Erro ao deletar agendamento:", error);
-      toast.error("Erro ao deletar o agendamento.", {theme: 'colored', autoClose:6000});
+      toast.error("Erro ao deletar o agendamento.", { theme: 'colored', autoClose: 6000 });
     }
   };
 
@@ -140,6 +142,11 @@ function Perfil() {
 
   const confirmDeleteAccount = () => {
     setShowDeleteModal(true);
+  };
+
+  const confirmDeleteEvent = (eventId) => {
+    setShowDeleteEventModal(true);
+    setSelectedEventId(eventId); // Armazena o ID do evento selecionado
   };
 
   useEffect(() => {
@@ -237,23 +244,29 @@ function Perfil() {
           </div>
           <br />
           {userEvents.length > 0 ? (
-            <div className="cards-container">
+            <div className="cards-container-perfil">
               {userEvents.map((event) => (
                 <center>
-                  <div className="event-card" key={event.id}>
-                  <h3>{event.summary}</h3>
-                  <p>
-                    <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}<br />
-                    <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
-                  </p>
-                  <p>
-                    <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
-                  </p>
-                  <p>
-                    <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
-                  </p>
-                  <center><button onClick={() => handleDeleteEvent(event.id)}>Deletar</button></center>
-                </div>
+                  <div className="event-card-perfil" key={event.id}>
+                    <div className='title-card-perfil'>
+                      <h3>{event.summary}</h3>
+                    </div>
+                    <div className='content-card-perfil'>
+                      <p>
+                        <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}
+                      </p>
+                      <p>
+                        <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
+                      </p>
+                      <p>
+                        <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
+                      </p>
+                      <p>
+                        <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
+                      </p>
+                      <center><button onClick={() => confirmDeleteEvent(event.id)}>Cancelar</button></center>
+                    </div>
+                  </div>
                 </center>
               ))}
             </div>
@@ -284,12 +297,26 @@ function Perfil() {
           <div className="modal-content_perfil">
             <h2>Confirmar Exclusão</h2>
             <p>Tem certeza de que deseja deletar sua conta? Esta ação é irreversível.</p>
-            <button onClick={handleDeleteAccount}>Confirmar</button>
+            <button onClick={() => handleDeleteAccount}>Confirmar</button>
             <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
           </div>
         </div>
       )}
-      <ToastContainer/>
+
+      {showDeleteEventModal && (
+        <div className="modal_perfil">
+          <div className="modal-content_perfil">
+            <h2>Confirmar Cancelamento</h2>
+            <p>Tem certeza de que deseja cancelar este agendamento? Esta ação é irreversível.</p>
+            <button onClick={() => {
+              handleDeleteEvent(selectedEventId);
+              setShowDeleteEventModal(false);
+            }}>Confirmar</button>
+            <button onClick={() => setShowDeleteEventModal(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
+      <ToastContainer />
     </section>
   );
 }

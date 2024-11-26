@@ -21,6 +21,8 @@ function AdminAgendamentos() {
   const [agendamentos, setAgendamentos] = useState([]);
   const [countData, setCountData] = useState({});
   const [chartData, setChartData] = useState(null);
+  const [showDeleteEventModal, setShowDeleteEventModal] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState(null);
 
   const fetchAllAgendamentos = async () => {
     try {
@@ -68,12 +70,32 @@ function AdminAgendamentos() {
         headers: { Authorization: `Bearer ${token}` },
         params: { eventId: eventId },
       });
-      toast.success('Agendamento deletado com sucesso!', {theme: 'colored', autoClose:6000});
+      toast.success('Agendamento deletado com sucesso!', { theme: 'colored', autoClose: 6000 });
       setAgendamentos((prev) => prev.filter((event) => event.id !== eventId));
     } catch (error) {
       console.error('Erro ao deletar agendamento:', error);
-      toast.error('Erro ao deletar o agendamento.', {theme: 'colored', autoClose:6000});
+      toast.error('Erro ao deletar o agendamento.', { theme: 'colored', autoClose: 6000 });
     }
+  };
+
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      const token = localStorage.getItem('authToken');
+      await axios.delete(`http://localhost:8080/calendar/delete-events`, {
+        headers: { Authorization: `Bearer ${token}` },
+        params: { eventId: eventId }
+      });
+      toast.success("Agendamento deletado com sucesso!", { theme: 'colored', autoClose: 6000 });
+      setAgendamentos((prev) => prev.filter((event) => event.id !== eventId));
+    } catch (error) {
+      console.error("Erro ao deletar agendamento:", error);
+      toast.error("Erro ao deletar o agendamento.", { theme: 'colored', autoClose: 6000 });
+    }
+  };
+
+  const confirmDeleteEvent = (eventId) => {
+    setShowDeleteEventModal(true);
+    setSelectedEventId(eventId); // Armazena o ID do evento selecionado
   };
 
   useEffect(() => {
@@ -98,7 +120,7 @@ function AdminAgendamentos() {
           </a>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0', marginBottom: '10%'}}>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0', marginBottom: '10%' }}>
           <iframe
             src="https://calendar.google.com/calendar/embed?src=426a9c66fdbae0e52a9617b61ac1eb205748e5d0c7f5af1b21fc18fca3ba02cd%40group.calendar.google.com&ctz=America%2FSao_Paulo"
             style={{ border: 0 }}
@@ -108,29 +130,34 @@ function AdminAgendamentos() {
           ></iframe>
         </div>
 
-        
+
         <h1>Todos os Agendamentos</h1>
         <br />
         {agendamentos.length > 0 ? (
-          <div className="cards-container">
+          <div className="cards-container-admin">
             {agendamentos.map((event) => (
-              <div className="event-card" key={event.id}>
-                <h3>{event.summary}</h3>
-                <p>
-                  <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}<br />
-                  <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
-                </p>
-                <p>
-                  <strong>Usuário:</strong> {event.email}
-                </p>
-                <p>
-                  <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
-                </p>
-                <p>
-                  <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
-                </p>
-                <center><button onClick={() => handleDeleteAgendamento(event.id)}>Deletar</button></center>
-              </div>
+              <center>
+                <div className="event-card-admin" key={event.id}>
+                  <div className='title-card-admin'>
+                    <h3>{event.summary}</h3>
+                  </div>
+                  <div className='content-card-admin'>
+                    <p>
+                      <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}
+                    </p>
+                    <p>
+                      <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
+                    </p>
+                    <p>
+                      <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
+                    </p>
+                    <p>
+                      <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
+                    </p>
+                    <center><button onClick={() => confirmDeleteEvent(event.id)}>Cancelar</button></center>
+                  </div>
+                </div>
+              </center>
             ))}
           </div>
         ) : (
@@ -138,10 +165,10 @@ function AdminAgendamentos() {
         )}
 
         <div className='relatorio-container'>
-          <center><h1>Relatório de agendamento</h1></center>
+          <h1>Relatório de agendamento</h1>
 
           {/* Exibindo o gráfico */}
-          <div style={{ width: '80%', margin: '0 auto' }}>
+          <div style={{ width: '100%', margin: '0 auto' }}>
             {chartData ? (
               <Bar
                 data={chartData}
@@ -164,7 +191,22 @@ function AdminAgendamentos() {
           </div>
         </div>
       </div>
-      <ToastContainer/>
+
+      {showDeleteEventModal && (
+        <div className="modal_perfil">
+          <div className="modal-content_perfil">
+            <h2>Confirmar Cancelamento</h2>
+            <p>Tem certeza de que deseja cancelar este agendamento? Esta ação é irreversível.</p>
+            <button onClick={() => {
+              handleDeleteEvent(selectedEventId);
+              setShowDeleteEventModal(false);
+            }}>Confirmar</button>
+            <button onClick={() => setShowDeleteEventModal(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
+
+      <ToastContainer />
     </section>
   );
 }
