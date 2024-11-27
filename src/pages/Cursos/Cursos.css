@@ -264,6 +264,11 @@
         line-height: 1.7;
         padding-bottom: 5%;
     }
+    .panel-content-cursos{
+        font-size: 1rem;
+        padding-bottom: 10%;
+    }
+    
 }
 @media (min-width: 1500px) {
     .panel-content-cursos {
@@ -290,6 +295,18 @@
         width: 100%; /* A imagem vai ocupar 100% da largura do contêiner */
         height: auto; /* Mantém a proporção da imagem */
     }
+    .panel-content-cursos{
+        font-size: 1.5rem;
+        padding-bottom: 10%
+    
+    }
+}
+@media (max-width: 1500px) {
+    .panel-content-cursos{
+        font-size: 1.5rem;
+        padding-bottom: 10%;
+    }
+    
 }
 @media (min-width: 2500px){
     .card-cursos{
@@ -314,7 +331,21 @@
     .div-banner-cursos{
         width: 100%;
     }
+    .accordion-title-cursos{
+        font-size: 2.5rem;
+        text-align: center;
+        flex: 1;
+    }
+    .accordion-cursos {
+        justify-content: center; /* Centraliza os itens dentro do accordion */
+    }
+    .panel-content-cursos{
+        font-size: 1.4rem;
+        padding-bottom: 10%;
+    }
+ 
 }
+
 @media (max-width: 780px) {
     h1 {
         font-size: 1rem;
@@ -322,7 +353,7 @@
     .card-cursos {
         flex: 1 1 100%;
         /* Muda para 100% em telas menores */
-        max-width: 60%;
+        max-width: 80%;
         /* Remove a largura máxima */
         text-align: center;
     }
@@ -332,6 +363,24 @@
     .content-cursos{
         width: 100%;
     }
+    .subtitle-cursos{
+        font-size: 1.75rem;
+    }
+    .title-cursos{
+        font-size: 2.75;
+    }
+    .accordion-title-cursos{
+        font-size: 2.0rem;
+        text-align: center;
+        flex: 1;
+    }
+    .accordion-cursos {
+        justify-content: center; /* Centraliza os itens dentro do accordion */
+    }
+    .panel-content-cursos{
+        font-size: 1.2rem;
+        padding-bottom: 10%;
+    }
 }
 @media (max-width: 554px){
     .description-cursos{
@@ -340,6 +389,11 @@
     .subtitle-cursos{
         font-size: 1.5rem;
     }
+    .panel-content-cursos{
+        font-size: 1rem;
+        padding-bottom: 10%;
+    }
+    
 }
 @media (max-width: 454px) {
     .h1-banner-cursos{
@@ -356,7 +410,15 @@
 
     .card-cursos{
         max-width: none;
-        width: 100%;
+        width:100%;
+    }
+    .accordion-title-cursos{
+        font-size: 1.75rem;
+        
+    }
+    .panel-content-cursos{
+        font-size: 1rem;
+        padding-bottom: 10%;
     }
 
 }

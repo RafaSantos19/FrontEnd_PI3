@@ -237,10 +237,7 @@ function Catalogo() {
                                 </div>
                                 <p><strong>Descrição:</strong> O design personalizado simples é um procedimento de sobrancelha focado em modelar e ajustar o formato das sobrancelhas de acordo com as características faciais de cada pessoa. A técnica envolve a remoção dos pelos em excesso com pinça, cera ou linha, para criar um formato harmonioso e natural.</p>
                             </div>
-                        </Carousel>  
-                        <div className='div-centralizar-button-catalogo'>
-                            <button className='button-catalogo'>Agendar Serviço</button> 
-                        </div>                     
+                        </Carousel>                 
                     </div>
                 </div>             
             </div>

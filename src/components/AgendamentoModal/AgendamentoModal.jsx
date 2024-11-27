@@ -141,7 +141,14 @@ function AgendamentoModal({ onClose }) {
                         className="calendar-agendamento"
                         onChange={handleDateChange}
                         value={selectedDate}
-                        tileDisabled={({ date }) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                        tileDisabled={({ date }) => {
+                            const today = new Date();
+                            const maxDate = new Date();
+                            maxDate.setDate(today.getDate() + 30); // Define o limite de 30 dias à frente
+
+                            // Desativa as datas antes de hoje ou além de 30 dias à frente
+                            return date < today || date > maxDate;
+                        }}
                     />
 
                     <br />

@@ -48,18 +48,6 @@ function Perfil() {
     });
   };
 
-  const fetchUserData = async () => {
-    try {
-      const token = localStorage.getItem('authToken');
-      const response = await axios.get('http://localhost:8080/user/get', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setUserData(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar os dados do usuário:", error);
-    }
-  };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -107,32 +95,70 @@ function Perfil() {
     }
   };
 
-  const fetchUserEvents = async () => {
-    try {
-      const token = localStorage.getItem('authToken');
-      const response = await axios.get(`http://localhost:8080/calendar/list-user-events`, {
-        headers: { Authorization: `Bearer ${token}` },
-        params: { email: userData.email }
-      });
-      setUserEvents(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar agendamentos do usuário:", error);
-    }
-  };
-
   const handleDeleteEvent = async (eventId) => {
     try {
+      // Converte userEvents em uma lista plana para encontrar o evento
+      const allEvents = Object.values(userEvents).flat();
+
+      // Encontra o evento pelo ID
+      const eventToDelete = allEvents.find((event) => event.id === eventId);
+
+      if (!eventToDelete) {
+        toast.error("Agendamento não encontrado.", { theme: 'colored', autoClose: 6000 });
+        return;
+      }
+
+      // Verifica se o evento está dentro de 24 horas
+      const eventStart = new Date(eventToDelete.startDateTime);
+      const now = new Date();
+      const timeDifference = eventStart - now;
+
+      if (timeDifference <= 24 * 60 * 60 * 1000) { // 24 horas em milissegundos
+        toast.error("Cancelamento não permitido para agendamentos dentro de 24 horas.", {
+          theme: 'colored',
+          autoClose: 6000,
+        });
+        return;
+      }
+
       const token = localStorage.getItem('authToken');
       await axios.delete(`http://localhost:8080/calendar/delete-events`, {
         headers: { Authorization: `Bearer ${token}` },
-        params: { eventId: eventId }
+        params: { eventId: eventId },
       });
+
+      // Remove o evento do estado
+      const updatedEvents = allEvents.filter((event) => event.id !== eventId);
+
+      // Reagrupa os eventos por data
+      const groupedEvents = groupAndSortEvents(updatedEvents);
+
+      setUserEvents(groupedEvents);
+
       toast.success("Agendamento deletado com sucesso!", { theme: 'colored', autoClose: 6000 });
-      setUserEvents((prevEvents) => prevEvents.filter((event) => event.id !== eventId)); // Remove o evento do estado
     } catch (error) {
       console.error("Erro ao deletar agendamento:", error);
       toast.error("Erro ao deletar o agendamento.", { theme: 'colored', autoClose: 6000 });
     }
+  };
+
+  const groupAndSortEvents = (events) => {
+    // Ordena os eventos por data de início (mais próximo primeiro)
+    const sortedEvents = [...events].sort((a, b) =>
+      new Date(a.startDateTime) - new Date(b.startDateTime)
+    );
+
+    // Agrupa os eventos por dia
+    const groupedEvents = sortedEvents.reduce((groups, event) => {
+      const date = new Date(event.startDateTime).toLocaleDateString(); // Obtém a data no formato "dd/mm/aaaa"
+      if (!groups[date]) {
+        groups[date] = []; // Inicializa o grupo se não existir
+      }
+      groups[date].push(event);
+      return groups;
+    }, {});
+
+    return groupedEvents;
   };
 
   const openPasswordModal = () => {
@@ -150,11 +176,35 @@ function Perfil() {
   };
 
   useEffect(() => {
-    fetchUserData();
-    if (userData.email) {
-      fetchUserEvents();
-    }
-  }, [userData.email]);
+    // Função para buscar os dados do usuário e, em seguida, os eventos
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        const userResponse = await axios.get('http://localhost:8080/user/get', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setUserData(userResponse.data); // Atualiza os dados do usuário
+
+        // Após buscar os dados do usuário, busca os eventos
+        if (userResponse.data.email) {
+          const eventsResponse = await axios.get('http://localhost:8080/calendar/list-user-events', {
+            headers: { Authorization: `Bearer ${token}` },
+            params: { email: userResponse.data.email },
+          });
+
+          // Ordena e agrupa os eventos antes de definir o estado
+          const groupedEvents = groupAndSortEvents(eventsResponse.data);
+          setUserEvents(groupedEvents); // Atualiza os eventos agrupados
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados do usuário ou eventos:', error);
+        toast.error('Erro ao carregar dados. Tente novamente mais tarde.', { theme: 'colored', autoClose: 6000 });
+      }
+    };
+
+    fetchData();
+  }, []); // Executa apenas uma vez ao montar o componente
 
   return (
     <section className='section-perfil'>
@@ -243,33 +293,40 @@ function Perfil() {
             </a>
           </div>
           <br />
-          {userEvents.length > 0 ? (
-            <div className="cards-container-perfil">
-              {userEvents.map((event) => (
-                <center>
-                  <div className="event-card-perfil" key={event.id}>
-                    <div className='title-card-perfil'>
-                      <h3>{event.summary}</h3>
-                    </div>
-                    <div className='content-card-perfil'>
-                      <p>
-                        <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}
-                      </p>
-                      <p>
-                        <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
-                      </p>
-                      <p>
-                        <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
-                      </p>
-                      <p>
-                        <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
-                      </p>
-                      <center><button onClick={() => confirmDeleteEvent(event.id)}>Cancelar</button></center>
-                    </div>
-                  </div>
-                </center>
-              ))}
-            </div>
+          {userEvents && Object.keys(userEvents).length > 0 ? (
+            Object.keys(userEvents).map((date) => (
+              <div key={date} className="event-day-group">
+                <h2>{date}</h2> {/* Exibe o dia */}
+                <div className="cards-container-perfil">
+                  {userEvents[date].map((event) => (
+                    <center key={event.id}>
+                      <div className="event-card-perfil">
+                        <div className='title-card-perfil'>
+                          <h3>{event.summary}</h3>
+                        </div>
+                        <div className='content-card-perfil'>
+                          <p>
+                            <strong>Cliente:</strong> {event.description.split('Telefone:')[0].trim()}
+                          </p>
+                          <p>
+                            <strong>Telefone:</strong> {event.description.split('Telefone:')[1].trim()}
+                          </p>
+                          <p>
+                            <strong>Início:</strong> {new Date(event.startDateTime).toLocaleString()}
+                          </p>
+                          <p>
+                            <strong>Fim:</strong> {new Date(event.endDateTime).toLocaleString()}
+                          </p>
+                          <center>
+                            <button onClick={() => confirmDeleteEvent(event.id)}>Cancelar</button>
+                          </center>
+                        </div>
+                      </div>
+                    </center>
+                  ))}
+                </div>
+              </div>
+            ))
           ) : (
             <p>Você não possui agendamentos no momento.</p>
           )}

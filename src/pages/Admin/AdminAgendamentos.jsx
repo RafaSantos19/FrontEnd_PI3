@@ -30,7 +30,13 @@ function AdminAgendamentos() {
       const response = await axios.get('http://localhost:8080/calendar/list-all-events', {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setAgendamentos(response.data);
+
+      // Ordena os agendamentos por data de início (mais próximo primeiro)
+      const sortedAgendamentos = response.data.sort(
+        (a, b) => new Date(a.startDateTime) - new Date(b.startDateTime)
+      );
+
+      setAgendamentos(sortedAgendamentos);
     } catch (error) {
       console.error('Erro ao buscar todos os agendamentos:', error);
     }
