@@ -72,6 +72,8 @@ function Perfil() {
         headers: { Authorization: `Bearer ${token}` }
       });
       toast.success("Dados atualizados com sucesso!", { theme: 'colored', autoClose: 6000 });
+      sessionStorage.setItem('userName', `${userData.name} ${userData.lastName}`)
+      sessionStorage.setItem('userPhone', userData.phone)
     } catch (error) {
       console.error("Erro ao atualizar os dados do usuário:", error);
       toast.error("Erro ao atualizar os dados.", { theme: 'colored', autoClose: 6000 });
@@ -354,7 +356,7 @@ function Perfil() {
           <div className="modal-content_perfil">
             <h2>Confirmar Exclusão</h2>
             <p>Tem certeza de que deseja deletar sua conta? Esta ação é irreversível.</p>
-            <button onClick={() => handleDeleteAccount}>Confirmar</button>
+            <button onClick={handleDeleteAccount}>Confirmar</button>
             <button onClick={() => setShowDeleteModal(false)}>Cancelar</button>
           </div>
         </div>

@@ -22,6 +22,7 @@ function Menu() {
 
     setIsLoggedIn(!!token);
     setIsAdmin(email === "serginhonerdola@gmail.com");
+    //setIsAdmin(email === "miasrafa@gmail.com");
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
