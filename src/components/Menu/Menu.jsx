@@ -21,8 +21,8 @@ function Menu() {
     const email = sessionStorage.getItem('userEmail');
 
     setIsLoggedIn(!!token);
-    setIsAdmin(email === "serginhonerdola@gmail.com");
-    //setIsAdmin(email === "miasrafa@gmail.com");
+    //setIsAdmin(email === "serginhonerdola@gmail.com");
+    setIsAdmin(email === "miasrafa@gmail.com");
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

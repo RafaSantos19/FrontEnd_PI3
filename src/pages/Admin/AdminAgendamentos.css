@@ -1,10 +1,8 @@
-
-
 .admin-agendamentos-container {
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  margin-top: 10%;
+  margin-top: 100px;
 }
 
 .cards-container-admin {
@@ -14,10 +12,10 @@
 }
 
 .event-card-admin {
-  border: 1px solid #ccc;
+  border: solid 2px #c28d51;
   border-radius: 8px;
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 9px;
   background-color: #fff;
   text-align: left;
   /* Garante o alinhamento do texto à esquerda */
@@ -59,5 +57,35 @@
 }
 
 .relatorio-container {
-  margin-top: 10%;
+  margin-top: 50px;
+}
+
+.div-agendamentos-admin{
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #E7C7A1;
+}
+
+.div-grafico-agendamentos{
+  width: 70%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1600px) {
+  .div-grafico-agendamentos{
+    width: 80%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .div-grafico-agendamentos{
+    width: 100%;
+  }
+}
+
+@media (max-width: 340px) {
+  .div-agendamentos-admin{
+    padding: 0;
+  }
 }

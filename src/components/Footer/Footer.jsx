@@ -35,13 +35,10 @@ function Footer() {
             <h1 className='h1-footer'>HOME</h1>    
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>O QUE É?</a>
+            <a href='/#servicos-prestados' className='footer-link'>SERVIÇOS PRESTADOS.</a>
           </li>
           <li className='li-footer'>
-            <a href='#' className='footer-link'>QUEM SOU EU</a>
-          </li>
-          <li className='li-footer'>
-            <a href='#' className='footer-link'>SERVIÇOS PRESTADOS.</a>
+            <a href='/#quem-sou-eu' className='footer-link'>QUEM SOU EU</a>
           </li>
         </ul> 
         
@@ -50,10 +47,10 @@ function Footer() {
             <h1 className='h1-footer'>CURSOS</h1>
           </li>
           <li className='li-footer'>
-            <a href='/Cursos' className='footer-link'>TOPICO1</a>
+            <a href='/Cursos' className='footer-link'>DESIGNER DE SOBRANCELHA</a>
           </li>
           <li className='li-footer'>
-            <a href='/Cursos' className='footer-link'>TOPICO2</a>
+            <a href='/Cursos' className='footer-link'>BROW LAMINATION</a>
           </li>
         </ul> 
 

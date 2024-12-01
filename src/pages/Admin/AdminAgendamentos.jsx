@@ -114,7 +114,7 @@ function AdminAgendamentos() {
       <Menu />
       <div className="admin-agendamentos-container">
 
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{display:'flex', justifyContent:'center', alignItems: 'center'}}>
           <h1>Google Calendar</h1>
           <a
             href='https://calendar.google.com/calendar/u/0/r?cid=M2U1MzIwNDYxZDgzNGM1YzBiODQ0YjM3OThlYmE0NjVjMDYyY2UwZjExODMzYzNjNjAwMjZkOWM1NWY2ZTViZkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&pli=1'
@@ -126,7 +126,7 @@ function AdminAgendamentos() {
           </a>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0', marginBottom: '10%' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0', marginBottom: '70px' }}>
           <iframe
             src="https://calendar.google.com/calendar/embed?src=426a9c66fdbae0e52a9617b61ac1eb205748e5d0c7f5af1b21fc18fca3ba02cd%40group.calendar.google.com&ctz=America%2FSao_Paulo"
             style={{ border: 0 }}
@@ -139,6 +139,7 @@ function AdminAgendamentos() {
 
         <h1>Todos os Agendamentos</h1>
         <br />
+        <div className='div-agendamentos-admin'>
         {agendamentos.length > 0 ? (
           <div className="cards-container-admin">
             {agendamentos.map((event) => (
@@ -169,12 +170,13 @@ function AdminAgendamentos() {
         ) : (
           <p>Não há agendamentos disponíveis.</p>
         )}
+        </div>
 
         <div className='relatorio-container'>
           <h1>Relatório de agendamento</h1>
 
           {/* Exibindo o gráfico */}
-          <div style={{ width: '100%', margin: '0 auto' }}>
+          <div className='div-grafico-agendamentos'>
             {chartData ? (
               <Bar
                 data={chartData}
